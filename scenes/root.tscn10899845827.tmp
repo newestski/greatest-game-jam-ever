@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://djmsde1n2xp73"]
+
+[ext_resource type="PackedScene" uid="uid://catoifbqlym3j" path="res://scenes/player.tscn" id="1_j5px3"]
+
+[sub_resource type="GDScript" id="GDScript_j5px3"]
+resource_name = "enemy_spawner"
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Root" type="Node2D" unique_id=1290775341]
+
+[node name="Player" parent="." unique_id=1929232658 instance=ExtResource("1_j5px3")]
+walk_speed = 300.0
+spin_speed = 90
+fast_spin_speed = 360
+fire_rate = 0.1
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=22925503]
+position_smoothing_enabled = true
+
+[node name="Node" type="Node" parent="." unique_id=1653000211]
+script = SubResource("GDScript_j5px3")

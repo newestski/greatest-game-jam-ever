@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dlwtnxr8ct7gr"]
+
+[ext_resource type="Script" uid="uid://dn55acallkego" path="res://scripts/enemy_spawner.gd" id="1_ks1gq"]
+
+[node name="EnemySpawner" type="Node2D" unique_id=697891213]
+script = ExtResource("1_ks1gq")
+enemy_path = "res://scenes/enemies/enemy.tscn"
+
+[node name="Timer" type="Timer" parent="." unique_id=1246744339]
+wait_time = 2.0
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=642414809]
+gizmo_extents = 124.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

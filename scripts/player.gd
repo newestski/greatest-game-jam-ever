@@ -1,0 +1,52 @@
+class_name Player
+
+extends CharacterBody2D
+
+@export var walk_speed = 300.0 # walk speed (pixels per second)
+@export var spin_speed = 90 # default spin speed (degrees per second)
+@export var fast_spin_speed = 360 # faster spin speed (degrees per second)
+@export var fire_rate = 0.1 # minimum amount of time between shots (seconds)
+@export var team: String = "player" # the team attributed to damage created by the player (prevents friendly fire)
+
+@export_file("*.tscn") var bullet_path: String #file path to the bullet that will be spawned by shooting
+
+var time_since_last_shot: float = 0.0 # keeps track of time since last shot
+
+
+func _ready() -> void:
+	pass
+
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("shoot"):
+		if time_since_last_shot >= fire_rate:
+			spawn_bullet(bullet_path)
+			time_since_last_shot = 0
+	
+	# walking
+	var input_direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
+	velocity = input_direction * walk_speed
+	
+	# spinning
+	if Input.is_action_pressed("fast_spin"):
+		rotation_degrees += fast_spin_speed * delta
+	else:
+		rotation_degrees += spin_speed * delta
+	
+	#update timers
+	time_since_last_shot += delta 
+	
+	move_and_slide()
+
+
+func spawn_bullet(path):
+	#instance bullet
+	var packed_bullet: PackedScene = load(path)
+	var instanced_bullet: Bullet = packed_bullet.instantiate()
+	get_tree().root.get_child(0).add_child(instanced_bullet)
+	
+	#set bullets position/rotation
+	instanced_bullet.damage_team = team
+	instanced_bullet.global_position = global_position
+	instanced_bullet.rotation = rotation
+	
