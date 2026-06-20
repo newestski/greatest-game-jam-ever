@@ -9,6 +9,8 @@
 script = ExtResource("1_mkf8s")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1919181650]
+collision_layer = 8
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=670067129]
 shape = SubResource("CircleShape2D_v8qja")
