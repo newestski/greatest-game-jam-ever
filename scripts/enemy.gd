@@ -11,7 +11,7 @@ var target: Node2D
 
 
 func _ready() -> void:
-	target = get_tree().current_scene.get_node("Player")
+	target = get_tree().current_scene.get_node("Level/Player") #this uses is bad practice i know. cam someone can fix it for me :3
 
 
 func _physics_process(_delta: float) -> void:

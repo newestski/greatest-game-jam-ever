@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://b41onetcmh4ne"]
+
+[sub_resource type="GDScript" id="GDScript_ojb23"]
+resource_name = "game_ui"
+script/source = "extends Control
+
+@onready var health_bar: ProgressBar = $Control/VBoxContainer/HealthBar
+@onready var energy_bar: ProgressBar = $Control/VBoxContainer/EnergyBar
+@onready var player: Player = %Player
+
+func _process(delta: float) -> void:
+	if player:
+		health_bar.value = player.health_component.health
+		health_bar.max_value = player.health_component.max_health
+		energy_bar.value = player.energy
+		energy_bar.max_value = player.max_energy
+"
+
+[node name="GameUI" type="Control" unique_id=2131139602]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_ojb23")
+
+[node name="Control" type="Control" parent="." unique_id=1152021871]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=70523324]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=1051804231]
+layout_mode = 2
+
+[node name="EnergyBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=1862870217]
+layout_mode = 2

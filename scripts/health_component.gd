@@ -3,6 +3,7 @@ extends Node
 class_name HealthComponent
 
 @export var max_health: float = 100
+@export var passive_regen: float = 0.5 # health gained passively over time (hp points per second)
 @export var damagable: bool = true
 @export var health_team: String 
 
@@ -25,7 +26,7 @@ func damage(amount: float, damage_team: String):
 		damage_queue += amount
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if health <= 0:
 		if dead == false:
 			die()
@@ -40,6 +41,7 @@ func _process(_delta: float) -> void:
 			print(character.name + " health = " + str(health))
 		if health > max_health:
 			health = max_health
+		health += delta * passive_regen
 
 
 func die():
