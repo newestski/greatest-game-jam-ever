@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://djmsde1n2xp73"]
 
 [ext_resource type="PackedScene" uid="uid://catoifbqlym3j" path="res://scenes/player.tscn" id="1_j5px3"]
-[ext_resource type="PackedScene" uid="uid://dlwtnxr8ct7gr" path="res://scenes/enemy_spawner.tscn" id="2_twpsu"]
+[ext_resource type="PackedScene" uid="uid://dcxdfuw3ygwxh" path="res://scenes/levels/level_inst.tscn" id="2_lrqlo"]
 [ext_resource type="PackedScene" uid="uid://b41onetcmh4ne" path="res://scenes/game_ui.tscn" id="3_lrqlo"]
 
 [node name="Root" type="Node" unique_id=1944798513]
 
-[node name="Level" type="Node2D" parent="." unique_id=1290775341]
+[node name="Scene" type="Node2D" parent="." unique_id=1290775341]
 
-[node name="Player" parent="Level" unique_id=1929232658 instance=ExtResource("1_j5px3")]
+[node name="Player" parent="Scene" unique_id=1929232658 instance=ExtResource("1_j5px3")]
 unique_name_in_owner = true
-position = Vector2(154, -23)
 
-[node name="Camera2D" type="Camera2D" parent="Level/Player" unique_id=22925503]
+[node name="Camera2D" type="Camera2D" parent="Scene/Player" unique_id=22925503]
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
-[node name="EnemySpawner" parent="Level/Player" unique_id=697891213 instance=ExtResource("2_twpsu")]
+[node name="level" parent="Scene" unique_id=1009364 instance=ExtResource("2_lrqlo")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=177659179]
 

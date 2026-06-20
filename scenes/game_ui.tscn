@@ -8,7 +8,7 @@ script/source = "extends Control
 @onready var energy_bar: ProgressBar = $Control/VBoxContainer/EnergyBar
 @onready var player: Player = %Player
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player:
 		health_bar.value = player.health_component.health
 		health_bar.max_value = player.health_component.max_health

@@ -5,18 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="2_38ino"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8tegq"]
-radius = 35.0
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_38ino"]
-radius = 50.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1804707588]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_38ino")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=589761609]
-shape = SubResource("CircleShape2D_8tegq")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1950605407]
 script = ExtResource("1_8e3ao")
@@ -25,8 +21,11 @@ health_team = "enemy"
 metadata/_custom_type_script = "uid://v46e3yo41ho1"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=987956348]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_38ino")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=589761609]
+shape = SubResource("CircleShape2D_8tegq")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1615960671]
 collision_layer = 0
