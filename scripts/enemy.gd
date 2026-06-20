@@ -2,7 +2,7 @@ class_name Enemy
 
 extends CharacterBody2D
 
-@export var speed = 100 # movement speed of enemy (pixels per second)
+@export var speed = 50 # movement speed of enemy (pixels per second)
 @export var team: String = "enemy" # the team attributed to damage created by the enemy (prevents friendly fire)
 @export var health: float = 20 # amount of health the enemy has
 @export var damage: float = 10 # amount of contact damage the enemy does
@@ -11,7 +11,7 @@ var target: Node2D
 
 
 func _ready() -> void:
-	target = get_tree().current_scene.get_node("Level/Player") #this uses is bad practice i know. cam someone can fix it for me :3
+	target = get_tree().current_scene.get_node("Scene/Player") #this uses is bad practice i know. cam someone can fix it for me :3
 
 
 func _physics_process(_delta: float) -> void:

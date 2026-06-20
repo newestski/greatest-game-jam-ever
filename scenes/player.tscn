@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://v46e3yo41ho1" path="res://scripts/health_component.gd" id="3_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_28aoi"]
-radius = 35.0
+radius = 8.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1929232658]
 collision_layer = 2
@@ -16,7 +16,7 @@ bullet_path = "uid://bb0xhwkpsxdr3"
 shape = SubResource("CircleShape2D_28aoi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=414633298]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.11, 0.11)
 texture = ExtResource("2_qhqgy")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1574128180]

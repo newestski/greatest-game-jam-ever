@@ -23,6 +23,12 @@ folder_colors={
 "res://scripts/": "yellow"
 }
 
+[global_group]
+
+game_manager=""
+player=""
+enemy=""
+
 [input]
 
 move_up={
@@ -73,4 +79,5 @@ fast_spin={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

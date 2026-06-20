@@ -4,13 +4,13 @@ extends CharacterBody2D
 
 @onready var health_component: HealthComponent = $HealthComponent
 
-@export var walk_speed = 300.0 # walk speed (pixels per second)
-@export var spin_speed = 90 # default spin speed (degrees per second)
-@export var fast_spin_speed = 360 # faster spin speed (degrees per second)
-@export var fire_rate = 0.1 # minimum amount of time between shots (seconds)
-@export var max_energy = 5 # maximum amount of energy
-@export var energy_per_shot = 1 # energy cost of shooting once
-@export var energy_refill_rate = 1.5 # rate at with energy refills automatincally (units per second)
+@export var walk_speed: float = 100.0 # walk speed (pixels per second)
+@export var spin_speed: float = 90 # default spin speed (degrees per second)
+@export var fast_spin_speed: float = 360 # faster spin speed (degrees per second)
+@export var fire_rate: float = 0.1 # minimum amount of time between shots (seconds)
+@export var max_energy: float = 5 # maximum amount of energy
+@export var energy_per_shot: float = 1 # energy cost of shooting once
+@export var energy_refill_rate: float = 1.5 # rate at with energy refills automatincally (units per second)
 @export var team: String = "player" # the team attributed to damage created by the player (prevents friendly fire)
 @export_file("*.tscn") var bullet_path: String #file path to the bullet that will be spawned by shooting
 
