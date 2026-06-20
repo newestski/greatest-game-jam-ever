@@ -9,10 +9,11 @@ radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_38ino"]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1804707588]
+[node name="Enemy" type="CharacterBody2D" unique_id=1804707588 groups=["enemy"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_38ino")
+speed = 20
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1950605407]
 script = ExtResource("1_8e3ao")

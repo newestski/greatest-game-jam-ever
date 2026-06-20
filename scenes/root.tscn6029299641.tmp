@@ -8,7 +8,7 @@
 
 [node name="Scene" type="Node2D" parent="." unique_id=1290775341]
 
-[node name="Player" parent="Scene" unique_id=1929232658 groups=["player"] instance=ExtResource("1_j5px3")]
+[node name="Player" parent="Scene" unique_id=1929232658 instance=ExtResource("1_j5px3")]
 unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="Scene/Player" unique_id=22925503]
@@ -19,7 +19,6 @@ position_smoothing_enabled = true
 
 [node name="GameUI" parent="CanvasLayer" unique_id=2131139602 instance=ExtResource("3_lrqlo")]
 
-[node name="GameManager" type="Node" parent="." unique_id=457683328 groups=["game_manager"]]
-unique_name_in_owner = true
+[node name="GameManager" type="Node" parent="." unique_id=457683328]
 script = ExtResource("3_sqa0i")
 metadata/_custom_type_script = "uid://coi7wvn2ql6ux"

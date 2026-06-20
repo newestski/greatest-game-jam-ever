@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://t13urbeuanjm"]
+
+[ext_resource type="Texture2D" uid="uid://bmu5wvho3kcaw" path="res://assets/tilemap.png" id="1_phsuj"]
+
+[sub_resource type="GDScript" id="GDScript_phsuj"]
+resource_name = "next_floor_stairs"
+script/source = "extends Node2D
+
+@onready var area_2d: Area2D = $Area2D
+@onready var game_manager: GameManager
+@onready var player: Player
+
+func _ready():
+	player = get_tree().get_first_node_in_group(\"player\")
+	game_manager = get_tree().get_first_node_in_group(\"game_manager\")
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print(body)
+	if body == player:
+		game_manager.go_to_next_floor()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3un0"]
+size = Vector2(28, 14)
+
+[node name="NextFloorStairs" type="Node2D" unique_id=857532294]
+script = SubResource("GDScript_phsuj")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1084317774]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=734397886]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_p3un0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1889132838]
+position = Vector2(8, 7)
+texture = ExtResource("1_phsuj")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
