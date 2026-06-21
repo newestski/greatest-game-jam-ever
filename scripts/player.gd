@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var spin_acceleration: float = 200 # rate at witch spin speed increases over time (deg/s^2)
 @export var focus_spin_speed: float = 90 # spin speed while focus key is held (deg/s)
 @export var fast_spin_speed: float = 360 # starting spin speed when focus key is unpressed (deg/s)
-@export var special_attack_speed_threshold: float = 2000 # minimum speed required to use special attack (deg/s)
+@export var special_attack_speed_threshold: float = 1500 # minimum speed required to use special attack (deg/s)
 @export var team: String = "player" # the team attributed to damage created by the player (prevents friendly fire)
 
 @export_file("*.tscn") var bullet_path: String # file path to the bullet that will be spawned by shooting
@@ -29,8 +29,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(spin_speed)
-	
 	#shooting
 	if Input.is_action_pressed("shoot"):
 		if time_since_last_shot >= fire_rate and energy >= energy_per_shot:
