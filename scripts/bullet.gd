@@ -1,4 +1,5 @@
 class_name Bullet
+# this is a base class and should be inhereted for other bullets
 
 extends Node2D
 
@@ -8,6 +9,15 @@ extends Node2D
 @onready var hurt_box: Area2D = $HurtBox
 
 var damage_team: String
+
+func _ready():
+	hurt_box.body_entered.connect(_on_hurt_box_body_entered)
+	_on_spawned()
+
+
+func _on_spawned():
+	pass
+
 
 func die():
 	queue_free()
