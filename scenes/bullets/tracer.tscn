@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://iguby1r63xqt"]
+
+[ext_resource type="Script" uid="uid://c6wv26axfadaf" path="res://scripts/tracer.gd" id="1_7yo4t"]
+
+[node name="Tracer" type="Line2D" unique_id=1087194602]
+width = 1.0
+default_color = Color(1, 1, 0, 1)
+script = ExtResource("1_7yo4t")
