@@ -5,18 +5,18 @@ resource_name = "game_ui"
 script/source = "extends Control
 
 @onready var health_bar: ProgressBar = $Control/VBoxContainer/HealthBar
-@onready var energy_bar: ProgressBar = $Control/VBoxContainer/EnergyBar
 @onready var floor_counter: Label = $FloorCounter
 @onready var player: Player = %Player
 @onready var game_manager: GameManager = %GameManager
+@onready var ammocounter = $ammocounter
+
 
 func _process(_delta: float) -> void:
 	if player:
 		health_bar.value = player.health_component.health
 		health_bar.max_value = player.health_component.max_health
-		energy_bar.value = player.energy
-		energy_bar.max_value = player.max_energy
 		floor_counter.text = \"floor \" + str(game_manager.current_floor)
+		ammocounter.text = \"ammunition \" + str(player.ammunition)
 "
 
 [node name="GameUI" type="Control" unique_id=2131139602]
@@ -47,9 +47,6 @@ grow_vertical = 2
 [node name="HealthBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=1051804231]
 layout_mode = 2
 
-[node name="EnergyBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=1862870217]
-layout_mode = 2
-
 [node name="FloorCounter" type="Label" parent="." unique_id=1300781215]
 layout_mode = 1
 anchors_preset = 3
@@ -62,3 +59,17 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Floor: 0"
+
+[node name="ammocounter" type="Label" parent="." unique_id=8114585]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -39.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Ammunition: 0"
