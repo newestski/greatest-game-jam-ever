@@ -7,6 +7,7 @@ var enemy_folder = "res://scenes/enemies"
 var enemy_spawn_atlas_coords = Vector2i(9,0)
 var player_spawn_atlas_coords = Vector2i(9,1)
 var current_floor: int = 1
+var enemies_left = 0
 
 @onready var player: Player = %Player
 
@@ -95,7 +96,8 @@ func spawn_enemy(enemy_path: String, position: Vector2):
 	var instanced_enemy: Node2D = packed_enemy.instantiate()
 	get_tree().root.get_child(0).add_child.call_deferred(instanced_enemy)
 	instanced_enemy.position = position
-
+	enemies_left += 1
+	print(enemies_left)
 
 #deletes every enemy currently in the level
 #enemies MUST be in the group "enemy"
@@ -153,3 +155,7 @@ func move_player_to_spawn():
 #picks a random level, then generates it
 func generate_random_level():
 	generate_level(get_random_level())
+
+func on_enemy_death():
+	enemies_left -= 1
+	print(enemies_left)
