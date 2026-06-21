@@ -92,7 +92,6 @@ func _input(event: InputEvent) -> void:
 
 
 func special_attack():
-	print("ksldfljk")
 	spawn_bullet(shockwave_path)
 
 
@@ -113,7 +112,7 @@ func shooting():
 	else:
 		end_pos = ray.to_global(ray.target_position) #if it misses entirely and the raycats runs out this will set the end position for tracer
 	
-	get_tree().current_scene.add_child(tracer) #spawns tracer
+	if !tracer.get_parent(): get_tree().current_scene.add_child(tracer) #spawns tracer
 	tracer.bullet_tracer(start_pos, end_pos) #calls the tracer function
 
 func fireratetimer():

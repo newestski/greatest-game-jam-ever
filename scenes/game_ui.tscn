@@ -5,7 +5,6 @@ resource_name = "game_ui"
 script/source = "extends Control
 
 @onready var health_bar: ProgressBar = $Control/VBoxContainer/HealthBar
-@onready var energy_bar: ProgressBar = $Control/VBoxContainer/EnergyBar
 @onready var floor_counter: Label = $FloorCounter
 @onready var player: Player = %Player
 @onready var game_manager: GameManager = %GameManager
