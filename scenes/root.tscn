@@ -12,7 +12,7 @@
 unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="Scene/Player" unique_id=22925503]
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=177659179]
