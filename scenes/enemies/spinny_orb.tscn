@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c6b6p4m42i8d7"]
+
+[ext_resource type="Script" uid="uid://xe1jgv7i0qou" path="res://scripts/spinny_orb.gd" id="1_e8daw"]
+[ext_resource type="Script" uid="uid://v46e3yo41ho1" path="res://scripts/health_component.gd" id="2_avvie"]
+[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="3_ok5xi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8tegq"]
+radius = 8.0
+
+[node name="SpinnyOrb" type="CharacterBody2D" unique_id=243505862 groups=["enemy"]]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_e8daw")
+speed = 20
+metadata/_custom_type_script = "uid://dowrttjq23rqv"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1950605407]
+script = ExtResource("2_avvie")
+max_health = 50.0
+health_team = "enemy"
+metadata/_custom_type_script = "uid://v46e3yo41ho1"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1593866449]
+path_postprocessing = 1
+radius = 32.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987956348]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_ok5xi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=589761609]
+shape = SubResource("CircleShape2D_8tegq")

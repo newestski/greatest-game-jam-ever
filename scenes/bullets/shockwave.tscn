@@ -98,7 +98,6 @@ _data = {
 scale = Vector2(1e-05, 1e-05)
 script = ExtResource("1_ttgrr")
 velocity = 0.0
-damage = 50
 metadata/_custom_type_script = "uid://cmw8mvb4pll6p"
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1422373856]

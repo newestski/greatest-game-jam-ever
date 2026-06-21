@@ -4,6 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://bmu5wvho3kcaw" path="res://assets/tilemap.png" id="1_rscv7"]
 [ext_resource type="PackedScene" uid="uid://t13urbeuanjm" path="res://scenes/next_floor_stairs.tscn" id="3_4s0vi"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4s0vi"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4ch23"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bp0i"]
 texture = ExtResource("1_rscv7")
 0:0/0 = 0
@@ -165,15 +173,21 @@ texture = ExtResource("1_rscv7")
 9:0/0 = 0
 9:1/0 = 0
 4:2/0 = 0
+4:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4s0vi")
 4:3/0 = 0
+4:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4s0vi")
 5:3/0 = 0
+5:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4s0vi")
 5:2/0 = 0
+5:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4s0vi")
 6:2/0 = 0
 6:3/0 = 0
 7:3/0 = 0
 7:4/0 = 0
 6:4/0 = 0
 7:2/0 = 0
+8:0/0 = 0
+8:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4ch23")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4ch23"]
 scenes/1/scene = ExtResource("3_4s0vi")
@@ -183,6 +197,7 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Dev Wall"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_6bp0i")
 sources/1 = SubResource("TileSetScenesCollectionSource_4ch23")
 
@@ -192,6 +207,11 @@ script = ExtResource("1_2600p")
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=601086554]
 z_index = -1
 tile_map_data = PackedByteArray("AAD6//r/AAADAAAAAAD6//v/AAADAAEAAAD6//z/AAADAAEAAAD6//3/AAADAAIAAAD4//r/AAACAAAAAAD4//v/AAACAAEAAAD4//z/AAACAAEAAAD4//3/AAACAAIAAAD3//3/AAABAAIAAAD3//z/AAABAAEAAAD3//v/AAABAAEAAAD3//r/AAABAAAAAAD2//r/AAAAAAAAAAD2//v/AAAAAAEAAAD2//z/AAAAAAEAAAD2//3/AAAAAAIAAAD4////AAACAAMAAAD3////AAABAAMAAAD2////AAAAAAMAAAD6////AAADAAMAAAD/////AAAJAAEAAAD///3/AAAJAAAAAAD6//j/AAACAAIAAAD5//j/AAABAAIAAAD4//j/AAABAAIAAAD3//j/AAABAAIAAAD2//j/AAAAAAIAAAD2//f/AAAAAAEAAAD3//f/AAAEAAEAAAD4//f/AAABAAAAAAD5//f/AAAFAAEAAAD6//f/AAACAAEAAAD6//b/AAAEAAAAAAD6//X/AAAEAAEAAAD6//T/AAACAAAAAAD5//T/AAABAAAAAAD4//T/AAABAAAAAAD3//T/AAABAAAAAAD2//T/AAAAAAAAAAD2//X/AAAAAAEAAAD3//X/AAAEAAAAAAD2//b/AAAAAAEAAAD3//b/AAACAAEAAAD4//X/AAABAAIAAAD5//X/AAAFAAAAAAD5//b/AAAAAAEAAAD7//b/AAABAAIAAAD8//b/AAABAAIAAAD9//b/AAABAAIAAAD+//b/AAABAAIAAAD7//X/AAABAAAAAAD8//X/AAABAAAAAAD9//X/AAABAAAAAAD+//X/AAABAAAAAAD///X/AAACAAAAAAD///b/AAACAAIAAAD4//b/AAAEAAIAAAA=")
+tile_set = SubResource("TileSet_5ufqr")
+
+[node name="TileMapLayerNavigation" type="TileMapLayer" parent="." unique_id=65407729]
+visible = false
+z_index = -1
 tile_set = SubResource("TileSet_5ufqr")
 
 [node name="TileMapLayerFloor" type="TileMapLayer" parent="." unique_id=256646290]
