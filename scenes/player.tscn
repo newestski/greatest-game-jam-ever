@@ -22,6 +22,7 @@ texture = ExtResource("2_qhqgy")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1574128180]
 script = ExtResource("3_qhqgy")
+passive_regen = 0.0
 health_team = "player"
 metadata/_custom_type_script = "uid://v46e3yo41ho1"
 

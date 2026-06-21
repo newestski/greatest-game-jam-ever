@@ -15,6 +15,8 @@ var current_level: Level
 
 
 func _ready():
+	# swap if you need to use the debug lvl
+	# generate_level("res://scenes/levels/level_debug.tscn")
 	generate_random_level()
 
 
@@ -95,9 +97,11 @@ func spawn_enemy(enemy_path: String, position: Vector2):
 	var packed_enemy: PackedScene = load(enemy_path)
 	var instanced_enemy: Node2D = packed_enemy.instantiate()
 	get_tree().root.get_child(0).add_child.call_deferred(instanced_enemy)
+	
 	instanced_enemy.position = position
 	enemies_left += 1
 	print(enemies_left)
+
 
 #deletes every enemy currently in the level
 #enemies MUST be in the group "enemy"

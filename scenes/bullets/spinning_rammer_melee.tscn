@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://blvhua0c4ay4c"]
+
+[ext_resource type="Script" uid="uid://cmw8mvb4pll6p" path="res://scripts/bullet.gd" id="1_rt0kk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2spp"]
+radius = 16.0
+
+[node name="SpinningRammerMelee" type="Node2D" unique_id=1291661417]
+script = ExtResource("1_rt0kk")
+velocity = 0.0
+damage = 5.0
+lifespan = 0.1
+metadata/_custom_type_script = "uid://cmw8mvb4pll6p"
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=585806278]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=871140642]
+shape = SubResource("CircleShape2D_b2spp")
