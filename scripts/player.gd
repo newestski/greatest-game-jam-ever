@@ -89,5 +89,4 @@ func _input(event: InputEvent) -> void:
 
 
 func special_attack():
-	print("ksldfljk")
 	spawn_bullet(shockwave_path)

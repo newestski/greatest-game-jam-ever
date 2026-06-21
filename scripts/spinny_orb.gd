@@ -1,10 +1,10 @@
 extends Enemy
 
-@export var sight_distance = 250
-@export var hit_distance = 50 
+@export var sight_distance = 250 # distance at witch enemy will start moveing toward you (px)
+@export var hit_distance = 50 # distance at witch enemy will attempt to hit you (px)
 @export var attack_cooldown = 0.5 # time between attacks (sec)
 
-var spinny_orb_melee_path = "res://scenes/bullets/spinny_orb_melee.tscn"
+var spinny_orb_melee_path = "res://scenes/bullets/spinny_orb_melee.tscn" #file path of bullet
 
 enum states{IDLE, ATTACKING}
 var state = states.IDLE

@@ -1,5 +1,6 @@
 extends Bullet
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-func _on_spawned():
+func on_spawned():
+	print("sdjksdlg;")
 	animation_player.play("shockwave")

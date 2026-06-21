@@ -27,10 +27,11 @@ func on_movement_step():
 #setting things up
 func _ready():
 	hurt_box.body_entered.connect(_on_hurt_box_body_entered)
-	on_spawned()
 	
 	var timer = get_tree().create_timer(lifespan)
 	timer.timeout.connect(die)
+	
+	on_spawned()
 
 
 func die():

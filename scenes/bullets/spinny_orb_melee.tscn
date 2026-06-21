@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://wxjodwdj1wyj"]
 
 [ext_resource type="Script" uid="uid://cmw8mvb4pll6p" path="res://scripts/bullet.gd" id="1_tpb5a"]
-[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="2_xielo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b2spp"]
-radius = 5.0
+radius = 16.0
 
 [node name="SpinnyOrbMelee" type="Node2D" unique_id=1291661417]
 script = ExtResource("1_tpb5a")
-velocity = 200.0
+velocity = 50.0
 lifespan = 0.1
 metadata/_custom_type_script = "uid://cmw8mvb4pll6p"
 
@@ -18,7 +17,3 @@ collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=871140642]
 shape = SubResource("CircleShape2D_b2spp")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=505883220]
-scale = Vector2(0.07, 0.07)
-texture = ExtResource("2_xielo")
