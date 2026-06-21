@@ -1,4 +1,4 @@
-class_name Enemy #base class that provides utility for all enemies. others should inheret
+class_name Enemy #this is a base class that provides utility for all enemies. others should inheret
 
 extends CharacterBody2D
 
@@ -11,6 +11,7 @@ extends CharacterBody2D
 
 var target: Node2D
 
+
 #abstract classes intended to be overwritten
 func on_spawn():
 	pass
@@ -20,11 +21,19 @@ func on_death():
 	pass
 
 
+func on_physics_proccess(delta):
+	pass
+
+
 #sets things up
 func _ready() -> void:
 	target = get_tree().get_first_node_in_group("player")
 	on_spawn()
 	health_component.death.connect(on_death)
+
+
+func _physics_process(delta: float) -> void:
+	on_physics_proccess(delta)
 
 
 #UTILITY FUNCTIONS:
@@ -64,7 +73,3 @@ func check_line_of_sight(target_position):
 		return false
 	else:
 		return true
-
-
-func _physics_process(_delta: float) -> void:
-	pass

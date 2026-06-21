@@ -15,6 +15,8 @@ var current_level: Level
 
 
 func _ready():
+	# swap if you need to use the debug lvl
+	# generate_level("res://scenes/levels/level_debug.tscn")
 	generate_random_level()
 
 

@@ -10,7 +10,8 @@ enum states{IDLE, ATTACKING}
 var state = states.IDLE
 var time_since_last_attack: float = 0
 
-func _physics_process(delta: float) -> void:
+func on_physics_proccess(delta: float) -> void:
+	if !target: return # prevents crash if player is freed
 	
 	time_since_last_attack += delta
 	
