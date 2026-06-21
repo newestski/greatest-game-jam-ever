@@ -25,7 +25,7 @@ var spin_speed: float = fast_spin_speed # keeps track of current spin speed
 
 
 func _ready() -> void:
-	pass
+	add_to_group("player")
 
 
 func _physics_process(delta: float) -> void:

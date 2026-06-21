@@ -48,3 +48,5 @@ func die():
 	dead = true
 	death.emit()
 	character.queue_free()
+	if get_parent().is_in_group("enemy"):
+		get_tree().get_first_node_in_group("game_manager").on_enemy_death()
