@@ -1,70 +1,28 @@
 [gd_scene format=3 uid="uid://b41onetcmh4ne"]
 
-[ext_resource type="Script" uid="uid://bbwic80negc6m" path="res://scenes/game_ui.gd" id="1_bt76a"]
 [ext_resource type="Script" uid="uid://bilgrwtmyf4ql" path="res://scripts/revolver_graphic.gd" id="1_u2dgd"]
-[ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="1_yubou"]
-[ext_resource type="Script" uid="uid://d277mdnrk01bl" path="res://scenes/health_bar.gd" id="2_e0pfi"]
+[ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/heads_up_display.png" id="1_yubou"]
 [ext_resource type="Texture2D" uid="uid://yxkhpf5oeyid" path="res://resources/empty_bullet.tres" id="2_rns2u"]
 [ext_resource type="Texture2D" uid="uid://c23wwqblt0lm8" path="res://resources/full_bullet.tres" id="3_bt76a"]
-[ext_resource type="FontFile" uid="uid://cbkdrngeg8eb5" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_djwj0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bt76a"]
-atlas = ExtResource("1_yubou")
-region = Rect2(0, 81, 93, 29)
+[sub_resource type="GDScript" id="GDScript_ojb23"]
+resource_name = "game_ui"
+script/source = "extends Control
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_djwj0"]
-atlas = ExtResource("1_yubou")
-region = Rect2(0, 52, 93, 29)
+@onready var health_bar: ProgressBar = $Control/VBoxContainer/HealthBar
+@onready var floor_counter: Label = $FloorCounter
+@onready var player: Player = %Player
+@onready var game_manager: GameManager = %GameManager
+@onready var ammocounter = $ammocounter
 
-[sub_resource type="Theme" id="Theme_e0pfi"]
-default_base_scale = 32.0
-default_font = ExtResource("3_djwj0")
-RichTextLabel/colors/font_shadow_color = Color(0, 0.007843138, 0.23921569, 1)
-RichTextLabel/constants/shadow_offset_x = 4
-RichTextLabel/constants/shadow_offset_y = 4
-RichTextLabel/font_sizes/normal_font_size = 32
-RichTextLabel/fonts/normal_font = ExtResource("3_djwj0")
 
-[sub_resource type="Animation" id="Animation_e0pfi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HealthBar/TextureProgressBar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(162, -47)]
-}
-
-[sub_resource type="Animation" id="Animation_o3bws"]
-resource_name = "shakey_shakey"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HealthBar/TextureProgressBar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.30778632, 1),
-"update": 0,
-"values": [Vector2(162, -40), Vector2(162, -47)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3huio"]
-_data = {
-&"RESET": SubResource("Animation_e0pfi"),
-&"shakey_shakey": SubResource("Animation_o3bws")
-}
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u2dgd"]
-atlas = ExtResource("1_yubou")
-region = Rect2(58, 0, 19, 33)
+func _process(_delta: float) -> void:
+	if player:
+		health_bar.value = player.health_component.health
+		health_bar.max_value = player.health_component.max_health
+		floor_counter.text = \"floor \" + str(game_manager.current_floor)
+		ammocounter.text = \"ammunition \" + str(player.ammunition)
+"
 
 [sub_resource type="Animation" id="Animation_u001w"]
 length = 0.001
@@ -81,23 +39,8 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_bt76a"]
-resource_name = "reload_bullet"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpinnyBit:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.999, 1),
-"transitions": PackedFloat32Array(0.108818814, 0.14865094, 1),
-"update": 0,
-"values": [0.0, 1.0471976, 0.0]
-}
-
 [sub_resource type="Animation" id="Animation_u2dgd"]
-resource_name = "spend_bullet"
+resource_name = "barrel_spin"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -105,8 +48,8 @@ tracks/0/path = NodePath("SpinnyBit:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.999, 1),
-"transitions": PackedFloat32Array(0.18946461, 3.8896436e-05, 1),
+"times": PackedFloat32Array(0, 0.96666664, 1),
+"transitions": PackedFloat32Array(0.18946461, 25.106693, 1),
 "update": 0,
 "values": [0.0, -1.0471975511965976, 0.0]
 }
@@ -114,24 +57,23 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bt76a"]
 _data = {
 &"RESET": SubResource("Animation_u001w"),
-&"reload_bullet": SubResource("Animation_bt76a"),
-&"spend_bullet": SubResource("Animation_u2dgd")
+&"barrel_spin": SubResource("Animation_u2dgd")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rns2u"]
 atlas = ExtResource("1_yubou")
 region = Rect2(0, 0, 46, 55)
 
-[node name="MainGameUI" type="Control" unique_id=2131139602 groups=["game_ui"]]
+[node name="GameUI" type="Control" unique_id=2131139602]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bt76a")
+script = SubResource("GDScript_ojb23")
 
-[node name="HealthBar" type="Control" parent="." unique_id=1152021871]
+[node name="Control" type="Control" parent="." unique_id=1152021871]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 1
 anchors_preset = 2
@@ -140,36 +82,17 @@ anchor_bottom = 1.0
 offset_top = -50.0
 offset_right = 200.0
 grow_vertical = 0
-script = ExtResource("2_e0pfi")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar" unique_id=1133665161]
-layout_mode = 0
-offset_left = 162.0
-offset_top = -47.0
-offset_right = 260.0
-offset_bottom = -7.0
-scale = Vector2(3, 3)
-texture_under = SubResource("AtlasTexture_bt76a")
-texture_progress = SubResource("AtlasTexture_djwj0")
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=70523324]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HealthBar" unique_id=1335888786]
-layout_mode = 0
-offset_left = 204.0
-offset_top = -54.0
-offset_right = 444.0
-offset_bottom = 13.0
-theme = SubResource("Theme_e0pfi")
-bbcode_enabled = true
-text = "[wave]100/100
-"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 3
-vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HealthBar" unique_id=146588053]
-root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_3huio")
+[node name="HealthBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=1051804231]
+layout_mode = 2
 
 [node name="FloorCounter" type="Label" parent="." unique_id=1300781215]
 layout_mode = 1
@@ -206,22 +129,6 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 grow_vertical = 0
 script = ExtResource("1_u2dgd")
-
-[node name="Head" type="TextureRect" parent="RevolverGraphic" unique_id=416498618]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -29.0
-offset_top = -126.0
-offset_right = 28.0
-offset_bottom = -27.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(28.5, 100)
-texture = SubResource("AtlasTexture_u2dgd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RevolverGraphic" unique_id=865720717]
 libraries/ = SubResource("AnimationLibrary_bt76a")

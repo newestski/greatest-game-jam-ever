@@ -10,7 +10,6 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 @onready var firerate_timer = $gun_position/firerate_timer
 @onready var gun_position = $gun_position
 
-
 @export var reload_speed: float = 0.7 #time to load every bullet
 @export var firerate: float = 0.4 #time between shots
 @export var damage: int = 30 #revolver damage
@@ -26,6 +25,9 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 
 const MAX_AMMO = 6 #the max ammunition for revolver
 
+var game_manager: GameManager
+var game_ui: MainGameUI
+
 var spin_speed: float = fast_spin_speed # keeps track of current spin speed
 var damage_team: String
 var reloading: bool = false #checks if you are reloding rn
@@ -33,8 +35,10 @@ var firerate_cooldown: bool = false #stops you from spamming
 var ammunition: int = 6 #current ammunition
 
 
+
 func _ready() -> void:
-	add_to_group("player")
+	game_manager = get_tree().get_first_node_in_group("game_manager")
+	game_ui = get_tree().get_first_node_in_group("game_ui")
 
 
 func _physics_process(delta: float) -> void:
@@ -96,6 +100,7 @@ func special_attack():
 
 
 func shooting():
+	game_ui.revolver_graphic.spend_bullet() #tells revolver graphic in ui to animate
 	ammunition -= 1 #substracts the ammunition
 	fireratetimer()
 	var start_pos = gun_position.global_position #starting position for drawing tracer
@@ -130,4 +135,5 @@ func reload(amount):
 		reload_timer.start()
 		await reload_timer.timeout
 		ammunition += 1
+		game_ui.revolver_graphic.reload_bullet() #tells revolver graphic in ui to animate
 	reloading = false
