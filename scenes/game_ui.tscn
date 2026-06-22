@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c23wwqblt0lm8" path="res://resources/full_bullet.tres" id="3_bt76a"]
 [ext_resource type="FontFile" uid="uid://cbkdrngeg8eb5" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_djwj0"]
 [ext_resource type="AudioStream" uid="uid://dnurccof7oif6" path="res://assets/sounds/player_hurt.wav" id="5_o3bws"]
+[ext_resource type="FontFile" uid="uid://cuqey5iojt3xp" path="res://assets/fonts/PixelOperator8.ttf" id="6_3huio"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt76a"]
 atlas = ExtResource("1_yubou")
@@ -184,13 +185,18 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -58.0
-offset_top = -23.0
+offset_left = -106.0
+offset_top = -37.0
+offset_right = -18.0
+offset_bottom = -14.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Floor: 0"
+theme_override_colors/font_shadow_color = Color(0, 0.007843138, 0.23921569, 1)
+theme_override_fonts/font = ExtResource("6_3huio")
+text = "Floor 0"
 
 [node name="ammocounter" type="Label" parent="." unique_id=8114585]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

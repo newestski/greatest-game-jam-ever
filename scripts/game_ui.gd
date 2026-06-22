@@ -12,5 +12,5 @@ extends Control
 
 func _process(_delta: float) -> void:
 	if player:
-		floor_counter.text = "floor " + str(game_manager.current_floor)
+		floor_counter.text = "Floor " + str(game_manager.current_floor)
 		ammocounter.text = "ammunition " + str(player.ammunition)
