@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b41onetcmh4ne"]
 
-[ext_resource type="Script" uid="uid://bbwic80negc6m" path="res://scripts/game_ui.gd" id="1_bt76a"]
+[ext_resource type="Script" uid="uid://bbwic80negc6m" path="res://scenes/game_ui.gd" id="1_bt76a"]
 [ext_resource type="Script" uid="uid://bilgrwtmyf4ql" path="res://scripts/revolver_graphic.gd" id="1_u2dgd"]
 [ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="1_yubou"]
-[ext_resource type="Script" uid="uid://d277mdnrk01bl" path="res://scripts/health_bar.gd" id="2_e0pfi"]
+[ext_resource type="Script" uid="uid://d277mdnrk01bl" path="res://scenes/health_bar.gd" id="2_e0pfi"]
 [ext_resource type="Texture2D" uid="uid://yxkhpf5oeyid" path="res://resources/empty_bullet.tres" id="2_rns2u"]
 [ext_resource type="Texture2D" uid="uid://c23wwqblt0lm8" path="res://resources/full_bullet.tres" id="3_bt76a"]
 [ext_resource type="FontFile" uid="uid://cbkdrngeg8eb5" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_djwj0"]

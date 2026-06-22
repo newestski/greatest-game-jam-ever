@@ -26,7 +26,6 @@ func _ready():
 
 func update_ammo_display():
 	ammo = player.ammunition
-	print(ammo)
 	var bullet_list: Array[TextureRect] = [bullet_1, bullet_2, bullet_3, bullet_4, bullet_5, bullet_6]
 	for i in range(0,6):
 		if i >= ammo:
