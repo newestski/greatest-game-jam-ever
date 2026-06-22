@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dcxdfuw3ygwxh"]
 
 [ext_resource type="Script" uid="uid://cwrhpyr30wbcj" path="res://scripts/level.gd" id="1_2600p"]
-[ext_resource type="Texture2D" uid="uid://bmu5wvho3kcaw" path="res://assets/tilemap.png" id="1_rscv7"]
+[ext_resource type="Texture2D" uid="uid://bmu5wvho3kcaw" path="res://assets/images/tilemap.png" id="1_rscv7"]
 [ext_resource type="PackedScene" uid="uid://t13urbeuanjm" path="res://scenes/next_floor_stairs.tscn" id="3_4s0vi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4s0vi"]

@@ -15,10 +15,15 @@ run/main_scene="uid://djmsde1n2xp73"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cpq66w7tbrtxj"
+
 [file_customization]
 
 folder_colors={
 "res://assets/": "red",
+"res://resources/": "green",
 "res://scenes/": "blue",
 "res://scripts/": "yellow"
 }
@@ -28,6 +33,7 @@ folder_colors={
 game_manager=""
 player=""
 enemy=""
+game_ui=""
 
 [input]
 

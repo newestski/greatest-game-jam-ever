@@ -2,14 +2,14 @@ class_name GameManager
 
 extends Node
 
+@onready var player: Player = %Player
+
 var level_folder = "res://scenes/levels/tower_spawn_pool"
 var enemy_folder = "res://scenes/enemies"
 var enemy_spawn_atlas_coords = Vector2i(9,0)
 var player_spawn_atlas_coords = Vector2i(9,1)
 var current_floor: int = 1
 var enemies_left = 0
-
-@onready var player: Player = %Player
 
 var current_level: Level
 
