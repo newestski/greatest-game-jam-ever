@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cq3xqkkeb4yyq"]
+
+[ext_resource type="Theme" uid="uid://bdkppv8d4rtqo" path="res://resources/menus_theme.tres" id="1_6ac28"]
+[ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="2_abyud"]
+[ext_resource type="Script" uid="uid://c5jnashh5podh" path="res://scripts/nine_patch_button.gd" id="2_d6en0"]
+
+[node name="NinePatchButton" type="Button" unique_id=503859571]
+z_index = 1
+theme = ExtResource("1_6ac28")
+text = "Unpause"
+flat = true
+script = ExtResource("2_d6en0")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=92743807]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_abyud")
+region_rect = Rect2(77, 0, 9, 9)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4

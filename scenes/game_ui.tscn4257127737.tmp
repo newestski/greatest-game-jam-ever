@@ -12,8 +12,6 @@
 [ext_resource type="Script" uid="uid://cbgofoa7y1h2n" path="res://scenes/pause_menu.gd" id="10_s2npe"]
 [ext_resource type="Theme" uid="uid://bdkppv8d4rtqo" path="res://resources/menus_theme.tres" id="10_sjwyb"]
 [ext_resource type="PackedScene" uid="uid://cq3xqkkeb4yyq" path="res://scenes/nine_patch_button.tscn" id="11_5kh4o"]
-[ext_resource type="Script" uid="uid://jk01dv3ejj50" path="res://scenes/fade_transition.gd" id="13_g2v8e"]
-[ext_resource type="PackedScene" uid="uid://3p3okus2e73h" path="res://scenes/settings_menu.tscn" id="14_1kaiv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt76a"]
 atlas = ExtResource("1_yubou")
@@ -155,58 +153,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_1kaiv"]
-resource_name = "close"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(4.141061, 1),
-"update": 0,
-"values": [Vector2(526, 284), Vector2(526, 350)]
-}
 
 [sub_resource type="Animation" id="Animation_g2v8e"]
 resource_name = "open"
@@ -235,78 +181,11 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1kaiv"]
 _data = {
 &"RESET": SubResource("Animation_s2npe"),
-&"close": SubResource("Animation_1kaiv"),
 &"open": SubResource("Animation_g2v8e")
-}
-
-[sub_resource type="Animation" id="Animation_upmhx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_igvt4"]
-resource_name = "half_fade_in"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.6901961), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ihktq"]
-resource_name = "half_fade_out"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.6901961)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_igvt4"]
-_data = {
-&"RESET": SubResource("Animation_upmhx"),
-&"half_fade_in": SubResource("Animation_igvt4"),
-&"half_fade_out": SubResource("Animation_ihktq")
 }
 
 [node name="MainGameUI" type="Control" unique_id=2131139602 groups=["game_ui"]]
@@ -381,7 +260,6 @@ theme_override_fonts/font = ExtResource("6_3huio")
 text = "Floor 0"
 
 [node name="ammocounter" type="Label" parent="." unique_id=8114585]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -517,8 +395,6 @@ texture = ExtResource("2_rns2u")
 expand_mode = 1
 
 [node name="PauseMenu" type="Control" parent="." unique_id=578064645]
-process_mode = 3
-visible = false
 z_index = 1
 custom_minimum_size = Vector2(100, 80)
 layout_mode = 1
@@ -530,7 +406,7 @@ anchor_bottom = 0.5
 offset_left = -50.0
 offset_top = -40.0
 offset_right = 50.0
-offset_bottom = 40.000244
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
@@ -582,9 +458,7 @@ text = "Quit"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu" unique_id=1531459884]
 libraries/ = SubResource("AnimationLibrary_1kaiv")
 
-[node name="FadeTransition" type="Panel" parent="." unique_id=888223104 groups=["fade_transition"]]
-process_mode = 3
-modulate = Color(1, 1, 1, 0)
+[node name="FadeTransition" type="Panel" parent="." unique_id=888223104]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -593,12 +467,5 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("10_sjwyb")
-script = ExtResource("13_g2v8e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FadeTransition" unique_id=540797795]
-libraries/ = SubResource("AnimationLibrary_igvt4")
-
-[node name="SettingsMenu" parent="." unique_id=1257633496 instance=ExtResource("14_1kaiv")]
-process_mode = 3
-z_index = 4
-layout_mode = 1
