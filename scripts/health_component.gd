@@ -6,6 +6,7 @@ class_name HealthComponent
 @export var passive_regen: float = 0.5 # health gained passively over time (hp points per second)
 @export var damagable: bool = true
 @export var health_team: String 
+@export var hurt_sound: AudioStream
 
 var health: float
 var damage_queue: float
@@ -21,6 +22,16 @@ func _ready():
 	character = get_parent()
 
 
+func play_hurt_sound():
+	var sound = AudioStreamPlayer2D.new()
+	sound.stream = hurt_sound
+	print(sound)
+	add_child(sound)
+	sound.play()
+	await sound.finished
+	sound.queue_free()
+
+
 func damage(amount: float, damage_team: String):
 	if health_team != damage_team:
 		damage_queue += amount
@@ -32,6 +43,7 @@ func _process(delta: float) -> void:
 			die()
 	else:
 		if damage_queue != 0:
+			play_hurt_sound()
 			health -= damage_queue
 			damaged.emit(health, damage_queue)
 			damage_queue = 0
