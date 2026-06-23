@@ -10,8 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dnurccof7oif6" path="res://assets/sounds/player_hurt.wav" id="5_o3bws"]
 [ext_resource type="FontFile" uid="uid://cuqey5iojt3xp" path="res://assets/fonts/PixelOperator8.ttf" id="6_3huio"]
 [ext_resource type="PackedScene" uid="uid://ej45h4uaijvi" path="res://scenes/pause_menu.tscn" id="10_g2v8e"]
-[ext_resource type="Theme" uid="uid://bdkppv8d4rtqo" path="res://resources/menus_theme.tres" id="10_sjwyb"]
-[ext_resource type="Script" uid="uid://jk01dv3ejj50" path="res://scripts/fade_transition.gd" id="13_g2v8e"]
+[ext_resource type="PackedScene" uid="uid://kek4bffv1kob" path="res://scenes/fade_transition.tscn" id="11_g2v8e"]
 [ext_resource type="PackedScene" uid="uid://3p3okus2e73h" path="res://scenes/settings_menu.tscn" id="14_1kaiv"]
 [ext_resource type="PackedScene" uid="uid://djlikehuyw5gi" path="res://scenes/death_menu.tscn" id="14_upmhx"]
 
@@ -128,60 +127,6 @@ _data = {
 [sub_resource type="AtlasTexture" id="AtlasTexture_rns2u"]
 atlas = ExtResource("1_yubou")
 region = Rect2(0, 0, 46, 55)
-
-[sub_resource type="Animation" id="Animation_upmhx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_igvt4"]
-resource_name = "half_fade_in"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.6901961), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ihktq"]
-resource_name = "half_fade_out"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.6901961)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_igvt4"]
-_data = {
-&"RESET": SubResource("Animation_upmhx"),
-&"half_fade_in": SubResource("Animation_igvt4"),
-&"half_fade_out": SubResource("Animation_ihktq")
-}
 
 [node name="MainGameUI" type="Control" unique_id=2131139602 groups=["game_ui"]]
 layout_mode = 3
@@ -393,21 +338,8 @@ expand_mode = 1
 [node name="PauseMenu" parent="." unique_id=1177030730 instance=ExtResource("10_g2v8e")]
 layout_mode = 1
 
-[node name="FadeTransition" type="Panel" parent="." unique_id=888223104 groups=["fade_transition"]]
-process_mode = 3
-modulate = Color(1, 1, 1, 0)
+[node name="FadeTransition" parent="." unique_id=1777364869 instance=ExtResource("11_g2v8e")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("10_sjwyb")
-script = ExtResource("13_g2v8e")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeTransition" unique_id=540797795]
-libraries/ = SubResource("AnimationLibrary_igvt4")
 
 [node name="SettingsMenu" parent="." unique_id=1257633496 instance=ExtResource("14_1kaiv")]
 process_mode = 3

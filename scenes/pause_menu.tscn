@@ -131,7 +131,7 @@ _data = {
 &"open": SubResource("Animation_g2v8e")
 }
 
-[node name="PauseMenu" type="Control" unique_id=1177030730]
+[node name="PauseMenu" type="Control" unique_id=1177030730 groups=["pause_menu"]]
 process_mode = 3
 visible = false
 z_index = 1

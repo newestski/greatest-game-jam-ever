@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Spin To Win"
-run/main_scene="uid://djmsde1n2xp73"
+run/main_scene="uid://kmb12f0e2qpx"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -36,6 +36,7 @@ enemy=""
 game_ui=""
 fade_transition=""
 settings_menu=""
+pause_menu=""
 
 [input]
 
