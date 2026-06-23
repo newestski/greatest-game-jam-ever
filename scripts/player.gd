@@ -11,6 +11,7 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 @onready var gun_position = $gun_position
 @onready var reload_sound: AudioStreamPlayer2D = $gun_position/ReloadSound
 @onready var shoot_sound: AudioStreamPlayer2D = $gun_position/ShootSound
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
 
 @export var reload_speed: float = 0.7 #time to load every bullet
 @export var firerate: float = 0.4 #time between shots
@@ -35,6 +36,7 @@ var damage_team: String
 var reloading: bool = false #checks if you are reloding rn
 var firerate_cooldown: bool = false #stops you from spamming
 var ammunition: int = 6 #current ammunition
+var dead: bool = false #checks if the player is currently dead
 
 
 
@@ -44,6 +46,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	#disables movement if dead
+	if dead:
+		velocity *= 0.5
+		move_and_slide()
+		return
+	
 	#shooting
 	if Input.is_action_just_pressed("shoot"):
 		if ammunition > 0 and reloading == false and firerate_cooldown == false:
@@ -70,6 +78,12 @@ func _physics_process(delta: float) -> void:
 		modulate = Color.from_rgba8(255,255,255,255)
 	
 	move_and_slide()
+
+
+#called by the player's health component on death
+func on_death():
+	dead = true
+	death_sound.play()
 
 
 func spawn_bullet(path):

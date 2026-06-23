@@ -47,6 +47,8 @@ func _process(delta: float) -> void:
 func die():
 	dead = true
 	death.emit()
-	character.queue_free()
-	if get_parent().is_in_group("enemy"):
+	if character.is_in_group("enemy"):
+		character.queue_free()
 		get_tree().get_first_node_in_group("game_manager").on_enemy_death()
+	elif character is Player:
+		character.on_death()

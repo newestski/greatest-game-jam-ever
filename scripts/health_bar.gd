@@ -13,6 +13,7 @@ var game_manager: GameManager
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	game_manager = get_tree().get_first_node_in_group("game_manager")
+	
 	texture_progress_bar.value = player.health_component.health
 	texture_progress_bar.max_value = player.health_component.max_health
 	player.health_component.damaged.connect(update_health_bar)

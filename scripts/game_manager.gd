@@ -3,27 +3,35 @@ class_name GameManager
 extends Node
 
 @onready var player: Player = %Player
+@onready var game_ui: MainGameUI = %GameUI
 
-var level_folder = "res://scenes/levels/tower_spawn_pool"
-var enemy_folder = "res://scenes/enemies"
-var enemy_spawn_atlas_coords = Vector2i(9,0)
-var player_spawn_atlas_coords = Vector2i(9,1)
+var level_folder = "res://scenes/levels/tower_spawn_pool" # directory of all spawnable levels
+var enemy_folder = "res://scenes/enemies" # directory of all spawnable enemies
+var main_menu_path = "res://scenes/main_menu.tscn" # scene that should be loaded when the player is sent to the main menu
+var enemy_spawn_atlas_coords = Vector2i(9,0) #location in the tilesheet that coorisponds to the player spawn tile
+var player_spawn_atlas_coords = Vector2i(9,1) #location in the tilesheet that coorisponds to the enemy spawn tile
 var current_floor: int = 1
 var enemies_left = 0
 
 var current_level: Level
 
 
+
 func _ready():
 	# swap if you need to use the debug lvl
 	# generate_level("res://scenes/levels/level_debug.tscn")
 	generate_random_level()
+	game_ui.fade_in()
 
 
 #goes thorugh transition sequence and loads next floor
 func go_to_next_floor():
 	generate_random_level()
 	current_floor += 1
+
+
+func go_to_main_menu():
+	get_tree().change_scene_to_file(main_menu_path)
 
 
 #generates an array of strings containing paths to all levels in the level pool

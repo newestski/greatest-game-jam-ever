@@ -18,6 +18,7 @@ position_smoothing_enabled = true
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=177659179]
 
 [node name="GameUI" parent="CanvasLayer" unique_id=2131139602 instance=ExtResource("3_lrqlo")]
+unique_name_in_owner = true
 
 [node name="GameManager" type="Node" parent="." unique_id=457683328 groups=["game_manager"]]
 unique_name_in_owner = true
