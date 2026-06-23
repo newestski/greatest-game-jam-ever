@@ -22,7 +22,7 @@ func on_death():
 	Global.money += reward
 
 
-func on_physics_proccess(delta):
+func on_physics_proccess(_delta):
 	pass
 
 
