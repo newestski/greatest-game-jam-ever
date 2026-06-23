@@ -11,25 +11,25 @@ extends Button
 
 
 func _ready() -> void:
-    mouse_entered.connect(_mouse_entered)
-    mouse_exited.connect(_mouse_exited)
-    button_down.connect(_button_down)
-    button_up.connect(_button_up)
+	mouse_entered.connect(_mouse_entered)
+	mouse_exited.connect(_mouse_exited)
+	button_down.connect(_button_down)
+	button_up.connect(_button_up)
 
 
 func _mouse_entered() -> void:
-    nine_patch_rect.region_rect.position = hover_position
-    
+	nine_patch_rect.region_rect.position = hover_position
+	
 
 func _mouse_exited() -> void:
-    nine_patch_rect.region_rect.position = idle_position
+	nine_patch_rect.region_rect.position = idle_position
 
 
 func _button_down() -> void:
-    nine_patch_rect.region_rect.position = press_position
+	nine_patch_rect.region_rect.position = press_position
 
 
 func _button_up() -> void:
-    nine_patch_rect.region_rect.position = hover_position
+	nine_patch_rect.region_rect.position = hover_position
 
-    
+	

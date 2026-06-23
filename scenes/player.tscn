@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://v46e3yo41ho1" path="res://scripts/health_component.gd" id="3_qhqgy"]
 [ext_resource type="AudioStream" uid="uid://dwlgx4k7ynq3" path="res://assets/sounds/reload.mp3" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://bapyat4beqcpe" path="res://assets/sounds/shoot2.wav" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://cpo8ht0gvbhnl" path="res://assets/sounds/player_death.wav" id="6_tuyoq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_28aoi"]
 radius = 8.0
@@ -46,6 +47,10 @@ bus = &"Sounds"
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="gun_position" unique_id=65854377]
 stream = ExtResource("5_qlg0r")
+bus = &"Sounds"
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=616613772]
+stream = ExtResource("6_tuyoq")
 bus = &"Sounds"
 
 [connection signal="timeout" from="gun_position/firerate_timer" to="." method="_on_firerate_timer_timeout"]

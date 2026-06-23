@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://3p3okus2e73h"]
+[gd_scene format=3 uid="uid://djlikehuyw5gi"]
 
-[ext_resource type="Script" uid="uid://dwfob8nkfhus2" path="res://scripts/settings_menu.gd" id="1_labj1"]
-[ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="1_wswnh"]
-[ext_resource type="Theme" uid="uid://bdkppv8d4rtqo" path="res://resources/menus_theme.tres" id="2_labj1"]
-[ext_resource type="PackedScene" uid="uid://cq3xqkkeb4yyq" path="res://scenes/nine_patch_button.tscn" id="3_lwwgp"]
+[ext_resource type="Script" uid="uid://d30kd3dsyqtjh" path="res://scripts/death_menu.gd" id="1_vqs20"]
+[ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="2_20fbl"]
+[ext_resource type="Theme" uid="uid://bdkppv8d4rtqo" path="res://resources/menus_theme.tres" id="3_uldby"]
+[ext_resource type="PackedScene" uid="uid://cq3xqkkeb4yyq" path="res://scenes/nine_patch_button.tscn" id="4_tie44"]
 
 [sub_resource type="Animation" id="Animation_s2npe"]
 length = 0.001
@@ -124,15 +124,18 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wswnh"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1kaiv"]
 _data = {
 &"RESET": SubResource("Animation_s2npe"),
 &"close": SubResource("Animation_1kaiv"),
 &"open": SubResource("Animation_g2v8e")
 }
 
-[node name="SettingsMenu" type="Control" unique_id=1257633496 groups=["settings_menu"]]
+[node name="DeathMenu" type="Control" unique_id=1177030730]
+process_mode = 3
 visible = false
+z_index = 1
+custom_minimum_size = Vector2(100, 60)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -141,97 +144,52 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
 offset_top = -40.0
-offset_right = 70.0
-offset_bottom = 60.00009
+offset_right = 50.0
+offset_bottom = 21.888916
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
 pivot_offset_ratio = Vector2(0.5, 0.5)
-script = ExtResource("1_labj1")
+script = ExtResource("1_vqs20")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1080182964]
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1231906464]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_wswnh")
+texture = ExtResource("2_20fbl")
 region_rect = Rect2(95, 0, 9, 9)
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=55917879]
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=1561589441]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_labj1")
+theme = ExtResource("3_uldby")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1285404471]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=310623797]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=554140440]
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=2005932598]
 layout_mode = 2
-
-[node name="BackButton" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1931830924 instance=ExtResource("3_lwwgp")]
-layout_mode = 2
-text = "< Back"
-
-[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1121327433]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "SETTINGS"
+text = "HA! YOU DIED!"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=275396183]
+[node name="RetryButton" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=503859571 instance=ExtResource("4_tie44")]
 layout_mode = 2
+text = "Go again"
 
-[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=2119471706]
+[node name="QuitButton" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=1994150885 instance=ExtResource("4_tie44")]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Volume"
-horizontal_alignment = 1
+text = "Give up"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=1691071637]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=409657271]
-layout_mode = 2
-text = "Sound"
-horizontal_alignment = 1
-
-[node name="SoundsSlider" type="HSlider" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=23666321]
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 2.0
-step = 0.0
-tick_count = 5
-ticks_on_borders = true
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=193682776]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=861775592]
-layout_mode = 2
-text = "Music"
-horizontal_alignment = 1
-
-[node name="MusicSlider" type="HSlider" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1538260542]
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 2.0
-step = 0.0
-tick_count = 5
-ticks_on_borders = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=94270363]
-libraries/ = SubResource("AnimationLibrary_wswnh")
-
-[connection signal="pressed" from="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="value_changed" from="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2/SoundsSlider" to="." method="_on_sounds_slider_value_changed"]
-[connection signal="value_changed" from="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer3/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1971962702]
+libraries/ = SubResource("AnimationLibrary_1kaiv")
