@@ -30,6 +30,7 @@ metadata/_custom_type_script = "uid://coi7wvn2ql6ux"
 
 [node name="MusicManager" type="Node" parent="." unique_id=888475903]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("4_sqa0i")
 
 [node name="RevolutionBase" type="AudioStreamPlayer" parent="MusicManager" unique_id=307018416]
