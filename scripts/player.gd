@@ -12,6 +12,7 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 @onready var reload_sound: AudioStreamPlayer2D = $gun_position/ReloadSound
 @onready var shoot_sound: AudioStreamPlayer2D = $gun_position/ShootSound
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
+@onready var step_sound: AudioStreamPlayer2D = $StepSound
 
 @export var reload_speed: float = 0.7 #time to load every bullet
 @export var firerate: float = 0.4 #time between shots
@@ -19,6 +20,7 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 @export var walk_speed: float = 100.0 # walk speed (px/s)
 @export var spin_acceleration: float = 200 # rate at witch spin speed increases over time (deg/s^2)
 @export var focus_spin_speed: float = 90 # spin speed while focus key is held (deg/s)
+@export var step_interval: float = 0.12 #time between step sfx
 @export var fast_spin_speed: float = 360 # starting spin speed when focus key is unpressed (deg/s)
 @export var special_attack_speed_threshold: float = 1500 # minimum speed required to use special attack (deg/s)
 @export var team: String = "player" # the team attributed to damage created by the player (prevents friendly fire)
@@ -37,7 +39,7 @@ var reloading: bool = false #checks if you are reloding rn
 var firerate_cooldown: bool = false #stops you from spamming
 var ammunition: int = 6 #current ammunition
 var dead: bool = false #checks if the player is currently dead
-
+var time_since_last_step: float = 0 #keeps track of time since last step sfx
 
 
 func _ready() -> void:
@@ -45,7 +47,14 @@ func _ready() -> void:
 	game_ui = get_tree().get_first_node_in_group("game_ui")
 
 
+func play_step_sfx():
+	step_sound.pitch_scale = randf_range(0.9, 1.1)
+	step_sound.play()
+
+
 func _physics_process(delta: float) -> void:
+	time_since_last_step += delta
+	
 	#disables movement if dead
 	if dead:
 		velocity *= 0.5
@@ -65,6 +74,9 @@ func _physics_process(delta: float) -> void:
 	# walking
 	var input_direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
 	velocity = input_direction * walk_speed
+	if input_direction and time_since_last_step > step_interval:
+		play_step_sfx()
+		time_since_last_step = 0
 	
 	# spinning
 	if !Input.is_action_pressed("focus_spin"): #only accelerate if NOT in focus

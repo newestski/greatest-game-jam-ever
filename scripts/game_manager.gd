@@ -15,6 +15,9 @@ var enemies_left = 0
 
 var current_level: Level
 
+signal new_floor
+signal floor_cleared
+
 
 func _ready():
 	# swap if you need to use the debug lvl
@@ -25,6 +28,7 @@ func _ready():
 
 #goes thorugh transition sequence and loads next floor
 func go_to_next_floor():
+	new_floor.emit()
 	generate_random_level()
 	current_floor += 1
 
@@ -79,7 +83,7 @@ func generate_level(level_path: String):
 		clear_all_enemies()
 	
 	print("beginning generating level " + level_path + "...")
-
+	
 	await wait_for_file(level_path)
 	
 	#instance level layout
@@ -171,4 +175,5 @@ func generate_random_level():
 
 func on_enemy_death():
 	enemies_left -= 1
-	print(enemies_left)
+	if enemies_left == 0:
+		floor_cleared.emit()
