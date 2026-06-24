@@ -17,7 +17,8 @@ metadata/_custom_type_script = "uid://dowrttjq23rqv"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1950605407]
 script = ExtResource("2_1gaxc")
-max_health = 50.0
+max_health = 20.0
+passive_regen = 0.0
 health_team = "enemy"
 hurt_sound = ExtResource("3_1gaxc")
 metadata/_custom_type_script = "uid://v46e3yo41ho1"

@@ -37,11 +37,15 @@ func damage(amount: float, damage_team: String):
 	if health_team != damage_team:
 		damage_queue += amount
 
+
 func health_upgrade(amount: float):
 	max_health += amount
+	damage(-amount, "")
+
 
 func heal(amount: float):
 	damage_queue -= amount
+
 
 func _process(delta: float) -> void:
 	if health <= 0:

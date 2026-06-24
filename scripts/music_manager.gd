@@ -17,9 +17,9 @@ var adaptive_song_tracks_enabled: Array[bool] # keeps track of witch audio strea
 var adaptive_song_tracks_default_volumes: Array[float] #keeps track of the starting bolume of audio streams in adaptive song
 
 func _ready() -> void:
-	start_adaptive_song([music_revolution_base, music_revolution_panic], [true, true])
-	game_manager.floor_cleared.connect(set_song_to_base_varient)
-	game_manager.new_floor.connect(set_song_to_panic_varient)
+	start_adaptive_song([music_revolution_base, music_revolution_panic], [true, false])
+	game_manager.floor_cleared.connect(floor_cleared)
+	game_manager.new_floor.connect(new_floor)
 	player.health_component.death.connect(set_song_to_base_varient)
 
 
@@ -34,11 +34,22 @@ func set_song_to_base_varient():
 func set_song_to_panic_varient():
 	adjust_adaptive_song([true,true], 1)
 
+
+func floor_cleared():
+	set_song_to_base_varient()
+
+
+func new_floor():
+	if game_manager.enemies_left == 0:
+		set_song_to_base_varient()
+	else:
+		set_song_to_panic_varient()
+
 # plays multiple audio players syncronized with the ability to mute and unmute at will
 # audio_array = array of audio tracks to be played
 # tracks_enabled = array stating witch of those tracks will be unmuted
 func start_adaptive_song(audio_array: Array[AudioStreamPlayer], tracks_enabled: Array[bool]):
-	# Note!!!! this DOES NOT reset audio stream players if song is changed! remeber to fix at some point.
+	# Note!!!! this DOES NOT reset audio stream players if song is changed! remember to fix at some point.
 	adaptive_song_audio_array = audio_array
 	adaptive_song_tracks_enabled = tracks_enabled
 	var i = 0

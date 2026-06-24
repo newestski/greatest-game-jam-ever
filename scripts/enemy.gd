@@ -7,7 +7,6 @@ extends CharacterBody2D
 
 @export var speed = 50 # movement speed of enemy (pixels per second)
 @export var team: String = "enemy" # the team attributed to damage created by the enemy (prevents friendly fire)
-@export var health: float = 20 # amount of health the enemy has
 @export var reward: int = 0 #amount of money the enemy drops
 
 var target: Node2D

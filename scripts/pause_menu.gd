@@ -27,7 +27,7 @@ func _ready():
 
 
 func pause():
-	if pausable:
+	if pausable and !game_manager.currently_transitioning:
 		paused = true
 		fade_transition.animation_player.play("half_fade_out")
 		get_tree().paused = true

@@ -13,6 +13,7 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 @onready var shoot_sound: AudioStreamPlayer2D = $gun_position/ShootSound
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var step_sound: AudioStreamPlayer2D = $StepSound
+@onready var special_sound: AudioStreamPlayer2D = $SpecialSound
 
 @export var reload_speed: float = 0.7 #time to load every bullet
 @export var firerate: float = 0.4 #time between shots
@@ -24,6 +25,10 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 @export var fast_spin_speed: float = 360 # starting spin speed when focus key is unpressed (deg/s)
 @export var special_attack_speed_threshold: float = 1500 # minimum speed required to use special attack (deg/s)
 @export var team: String = "player" # the team attributed to damage created by the player (prevents friendly fire)
+@export var max_dashes: float = 3 # max dashes you can have at once
+@export var dash_recharge_time: float = 1 # time it takes to regain 1 dash (sec)
+@export var dash_strength: float = 350
+@export var walk_acceleration: float = 1000
 
 @export_file("*.tscn") var bullet_path: String # file path to the bullet that will be spawned by shooting
 @export_file("*.tscn") var shockwave_path: String # file path to the bullet that will be spawned by using special
@@ -35,12 +40,12 @@ var game_ui: MainGameUI
 
 var spin_speed: float = fast_spin_speed # keeps track of current spin speed
 var damage_team: String
-var reloading: bool = false #checks if you are reloding rn
+var reloading: bool = false # checks if you are reloding rn
 var firerate_cooldown: bool = false #stops you from spamming
-var ammunition: int = 6 #current ammunition
-var dead: bool = false #checks if the player is currently dead
+var ammunition: int = 6 # current ammunition
+var dead: bool = false # checks if the player is currently dead
 var time_since_last_step: float = 0 #keeps track of time since last step sfx
-
+var dash_meter: float = 0
 
 func _ready() -> void:
 	game_manager = get_tree().get_first_node_in_group("game_manager")
@@ -56,24 +61,35 @@ func _physics_process(delta: float) -> void:
 	time_since_last_step += delta
 	
 	#disables movement if dead
+	velocity *= 0.9
 	if dead:
-		velocity *= 0.5
 		move_and_slide()
 		return
 	
-	#shooting
+	# dashing
+	if dash_meter < max_dashes:
+		dash_meter += delta * dash_recharge_time
+	else:
+		dash_meter = max_dashes
+	if Input.is_action_just_pressed("dash"):
+		if dash_meter > 1:
+			velocity = velocity.normalized() * dash_strength
+			dash_meter -= 1
+	
+	# shooting
 	if Input.is_action_just_pressed("shoot"):
 		if ammunition > 0 and reloading == false and firerate_cooldown == false:
 			shooting()
 
-	#reloading
+	# reloading
 	if Input.is_action_just_pressed("reload"):
 		if ammunition < MAX_AMMO and reloading == false: #chceks if your ammunition is less than full and if you arent arleady reloading
 			reload((MAX_AMMO - ammunition)) #says how much money we have to load in
 
 	# walking
 	var input_direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
-	velocity = input_direction * walk_speed
+	if velocity.length() <= walk_speed:
+		velocity += input_direction * delta * walk_acceleration
 	if input_direction and time_since_last_step > step_interval:
 		play_step_sfx()
 		time_since_last_step = 0
@@ -82,6 +98,7 @@ func _physics_process(delta: float) -> void:
 	if !Input.is_action_pressed("focus_spin"): #only accelerate if NOT in focus
 		spin_speed += spin_acceleration * delta
 	rotation_degrees += spin_speed * delta
+	
 	
 	#change color if special speed threshold is met
 	if spin_speed > special_attack_speed_threshold:
@@ -124,6 +141,7 @@ func _input(event: InputEvent) -> void:
 
 
 func special_attack():
+	special_sound.play()
 	spawn_bullet(shockwave_path)
 
 
