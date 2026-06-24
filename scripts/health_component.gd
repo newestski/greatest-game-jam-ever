@@ -7,7 +7,6 @@ class_name HealthComponent
 @export var damagable: bool = true
 @export var health_team: String 
 @export var hurt_sound: AudioStream
-@export var hurt_sound: AudioStream
 
 var health: float
 var damage_queue: float

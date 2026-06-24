@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://catoifbqlym3j"]
+
+[ext_resource type="Script" uid="uid://ccubd5bsl74pn" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://v46e3yo41ho1" path="res://scripts/health_component.gd" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://dwlgx4k7ynq3" path="res://assets/sounds/reload.mp3" id="4_dqkch"]
+[ext_resource type="AudioStream" uid="uid://bk8lwqshshelv" path="res://assets/sounds/hurt.wav" id="4_fjrip"]
+[ext_resource type="AudioStream" uid="uid://bapyat4beqcpe" path="res://assets/sounds/shoot2.wav" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://cpo8ht0gvbhnl" path="res://assets/sounds/player_death.wav" id="6_smehm"]
+[ext_resource type="AudioStream" uid="uid://4svbctpcwk42" path="res://assets/sounds/step.wav" id="8_smehm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_28aoi"]
+radius = 8.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1929232658]
+collision_layer = 2
+script = ExtResource("1_g2els")
+bullet_path = "uid://bb0xhwkpsxdr3"
+shockwave_path = "uid://df5x2448r1l2n"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=971702379]
+shape = SubResource("CircleShape2D_28aoi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=414633298]
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("2_qhqgy")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1574128180]
+script = ExtResource("3_qhqgy")
+passive_regen = 0.0
+health_team = "player"
+hurt_sound = ExtResource("4_fjrip")
+metadata/_custom_type_script = "uid://v46e3yo41ho1"
+
+[node name="gun_position" type="Marker2D" parent="." unique_id=1773744750]
+position = Vector2(0, 7)
+
+[node name="shot" type="RayCast2D" parent="gun_position" unique_id=2117033699]
+position = Vector2(0, -7)
+target_position = Vector2(0, 500)
+collision_mask = 5
+
+[node name="reload_timer" type="Timer" parent="gun_position" unique_id=264321811]
+
+[node name="firerate_timer" type="Timer" parent="gun_position" unique_id=365296731]
+
+[node name="ReloadSound" type="AudioStreamPlayer2D" parent="gun_position" unique_id=197535198]
+stream = ExtResource("4_dqkch")
+bus = &"Sounds"
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="gun_position" unique_id=65854377]
+stream = ExtResource("5_qlg0r")
+bus = &"Sounds"
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=616613772]
+stream = ExtResource("6_smehm")
+bus = &"Sounds"
+
+[node name="StepSound" type="AudioStreamPlayer2D" parent="." unique_id=1662715043]
+stream = ExtResource("8_smehm")
+volume_db = -10.0
+bus = &"Sounds"
+
+[connection signal="timeout" from="gun_position/firerate_timer" to="." method="_on_firerate_timer_timeout"]
