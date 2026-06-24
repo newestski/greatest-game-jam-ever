@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://d16w71bjfugd4"]
+
+[ext_resource type="Script" uid="uid://baaxrp6ucbd6e" path="res://scripts/shop_slot.gd" id="1_i3ubo"]
+[ext_resource type="FontFile" uid="uid://bv7wxymrak8mq" path="res://assets/PixelOperator8.ttf" id="2_7nrpo"]
+[ext_resource type="Texture2D" uid="uid://7v0vs7077np0" path="res://assets/button_sprite_sheet.png" id="2_sl5e3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3ubo"]
+radius = 10.049875
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nrpo"]
+atlas = ExtResource("2_sl5e3")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckp8l"]
+atlas = ExtResource("2_sl5e3")
+region = Rect2(9, 0, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jns18"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nrpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckp8l")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}]
+
+[node name="shop_slot" type="Control" unique_id=1730873643]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 3
+anchor_right = 0.007
+anchor_bottom = 0.011000001
+offset_right = 7.936
+offset_bottom = 8.872
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i3ubo")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1129810388]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="cost" type="Label" parent="TextureRect" unique_id=669334210]
+z_as_relative = false
+layout_mode = 0
+offset_left = -4.0
+offset_top = 18.0
+offset_right = 46.0
+offset_bottom = 26.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_7nrpo")
+theme_override_font_sizes/font_size = 8
+text = "cost: 99"
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect/cost" unique_id=406059293]
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 52.0
+offset_bottom = 10.0
+color = Color(0.13725491, 0.13725491, 0.13725491, 0.7294118)
+
+[node name="buy_zone" type="Area2D" parent="TextureRect" unique_id=1325172832]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/buy_zone" unique_id=644288178]
+position = Vector2(8, 20)
+shape = SubResource("CircleShape2D_i3ubo")
+
+[node name="button_anim" type="AnimatedSprite2D" parent="TextureRect" unique_id=1833773707]
+visible = false
+z_index = 1
+z_as_relative = false
+position = Vector2(8, -6)
+sprite_frames = SubResource("SpriteFrames_jns18")
+animation = &"click"
+autoplay = "click"
+frame_progress = 0.51176625
+
+[connection signal="body_entered" from="TextureRect/buy_zone" to="." method="_on_buy_zone_body_entered"]
+[connection signal="body_exited" from="TextureRect/buy_zone" to="." method="_on_buy_zone_body_exited"]

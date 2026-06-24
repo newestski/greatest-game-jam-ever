@@ -1,5 +1,26 @@
 [gd_scene format=3 uid="uid://b41onetcmh4ne"]
 
+[sub_resource type="GDScript" id="GDScript_ojb23"]
+resource_name = "game_ui"
+script/source = "extends Control
+
+@onready var health_bar: ProgressBar = $Control/VBoxContainer/HealthBar
+@onready var floor_counter: Label = $FloorCounter
+@onready var player: Player = %Player
+@onready var game_manager: GameManager = %GameManager
+@onready var ammocounter = $ammocounter
+@onready var moneycounter = $moneycounter
+
+
+
+func _process(_delta: float) -> void:
+	if player:
+		health_bar.value = player.health_component.health
+		health_bar.max_value = player.health_component.max_health
+		floor_counter.text = \"floor \" + str(game_manager.current_floor)
+		ammocounter.text = \"ammunition \" + str(player.ammunition)
+		moneycounter.text = \"money  \" + str(Global.money)
+"
 [ext_resource type="Script" uid="uid://bbwic80negc6m" path="res://scripts/game_ui.gd" id="1_bt76a"]
 [ext_resource type="Script" uid="uid://bilgrwtmyf4ql" path="res://scripts/revolver_graphic.gd" id="1_u2dgd"]
 [ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="1_yubou"]
@@ -207,13 +228,27 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -58.0
-offset_top = -39.0
-offset_bottom = -16.0
+offset_left = -115.0
+offset_top = -38.0
+offset_bottom = -15.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Ammunition: 0"
 
+[node name="moneycounter" type="Label" parent="." unique_id=466883696]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -53.0
+offset_right = -1.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "money: 0"
 [node name="RevolverGraphic" type="Control" parent="." unique_id=1445741677]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1

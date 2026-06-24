@@ -158,3 +158,7 @@ func reload(amount):
 		reload_sound.play() #plays sound
 		game_ui.revolver_graphic.reload_bullet() #tells revolver graphic in ui to animate
 	reloading = false
+
+
+func atk_upgrade(amount):
+	damage += amount
