@@ -131,3 +131,7 @@ func reload(amount):
 		await reload_timer.timeout
 		ammunition += 1
 	reloading = false
+
+
+func atk_upgrade(amount):
+	damage += amount

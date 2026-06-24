@@ -10,6 +10,7 @@
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_4e36c")
+reward = 50
 metadata/_custom_type_script = "uid://dowrttjq23rqv"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1950605407]
