@@ -29,17 +29,15 @@ script = ExtResource("3_sqa0i")
 metadata/_custom_type_script = "uid://coi7wvn2ql6ux"
 
 [node name="MusicManager" type="Node" parent="." unique_id=888475903]
-unique_name_in_owner = true
 script = ExtResource("4_sqa0i")
 
 [node name="RevolutionBase" type="AudioStreamPlayer" parent="MusicManager" unique_id=307018416]
 stream = ExtResource("5_jh1ax")
-volume_db = -5.0
 bus = &"Music"
 parameters/looping = true
 
 [node name="RevolutionPanic" type="AudioStreamPlayer" parent="MusicManager" unique_id=1320569139]
 stream = ExtResource("6_kycxp")
-volume_db = -5.0
+volume_db = -75.0
 bus = &"Music"
 parameters/looping = true

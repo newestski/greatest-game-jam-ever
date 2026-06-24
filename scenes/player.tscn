@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dwlgx4k7ynq3" path="res://assets/sounds/reload.mp3" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://bk8lwqshshelv" path="res://assets/sounds/hurt.wav" id="4_fjrip"]
 [ext_resource type="AudioStream" uid="uid://bapyat4beqcpe" path="res://assets/sounds/shoot2.wav" id="5_qlg0r"]
-[ext_resource type="AudioStream" uid="uid://ch2ky8ec4aw8" path="res://assets/sounds/shoot.mp3" id="7_smehm"]
+[ext_resource type="AudioStream" uid="uid://cpo8ht0gvbhnl" path="res://assets/sounds/player_death.wav" id="6_smehm"]
 [ext_resource type="AudioStream" uid="uid://4svbctpcwk42" path="res://assets/sounds/step.wav" id="8_smehm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_28aoi"]
@@ -53,7 +53,7 @@ stream = ExtResource("5_qlg0r")
 bus = &"Sounds"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=616613772]
-stream = ExtResource("7_smehm")
+stream = ExtResource("6_smehm")
 bus = &"Sounds"
 
 [node name="StepSound" type="AudioStreamPlayer2D" parent="." unique_id=1662715043]
