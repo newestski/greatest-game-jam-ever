@@ -1,39 +1,13 @@
 [gd_scene format=3 uid="uid://b41onetcmh4ne"]
 
-[sub_resource type="GDScript" id="GDScript_ojb23"]
-resource_name = "game_ui"
-script/source = "extends Control
-
-@onready var health_bar: ProgressBar = $Control/VBoxContainer/HealthBar
-@onready var floor_counter: Label = $FloorCounter
-@onready var player: Player = %Player
-@onready var game_manager: GameManager = %GameManager
-@onready var ammocounter = $ammocounter
-@onready var moneycounter = $moneycounter
-
-
-
-func _process(_delta: float) -> void:
-	if player:
-		health_bar.value = player.health_component.health
-		health_bar.max_value = player.health_component.max_health
-		floor_counter.text = \"floor \" + str(game_manager.current_floor)
-		ammocounter.text = \"ammunition \" + str(player.ammunition)
-		moneycounter.text = \"money  \" + str(Global.money)
-"
-[ext_resource type="Script" uid="uid://bbwic80negc6m" path="res://scripts/game_ui.gd" id="1_bt76a"]
+[ext_resource type="Script" uid="uid://bbwic80negc6m" path="res://scenes/game_ui.gd" id="1_bt76a"]
 [ext_resource type="Script" uid="uid://bilgrwtmyf4ql" path="res://scripts/revolver_graphic.gd" id="1_u2dgd"]
 [ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="1_yubou"]
-[ext_resource type="Script" uid="uid://d277mdnrk01bl" path="res://scripts/health_bar.gd" id="2_e0pfi"]
+[ext_resource type="Script" uid="uid://d277mdnrk01bl" path="res://scenes/health_bar.gd" id="2_e0pfi"]
 [ext_resource type="Texture2D" uid="uid://yxkhpf5oeyid" path="res://resources/empty_bullet.tres" id="2_rns2u"]
 [ext_resource type="Texture2D" uid="uid://c23wwqblt0lm8" path="res://resources/full_bullet.tres" id="3_bt76a"]
 [ext_resource type="FontFile" uid="uid://cbkdrngeg8eb5" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_djwj0"]
 [ext_resource type="AudioStream" uid="uid://dnurccof7oif6" path="res://assets/sounds/player_hurt.wav" id="5_o3bws"]
-[ext_resource type="FontFile" uid="uid://cuqey5iojt3xp" path="res://assets/fonts/PixelOperator8.ttf" id="6_3huio"]
-[ext_resource type="PackedScene" uid="uid://ej45h4uaijvi" path="res://scenes/pause_menu.tscn" id="10_g2v8e"]
-[ext_resource type="PackedScene" uid="uid://kek4bffv1kob" path="res://scenes/fade_transition.tscn" id="11_g2v8e"]
-[ext_resource type="PackedScene" uid="uid://3p3okus2e73h" path="res://scenes/settings_menu.tscn" id="14_1kaiv"]
-[ext_resource type="PackedScene" uid="uid://djlikehuyw5gi" path="res://scenes/death_menu.tscn" id="14_upmhx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt76a"]
 atlas = ExtResource("1_yubou")
@@ -210,45 +184,26 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = -37.0
-offset_right = -18.0
-offset_bottom = -14.0
+offset_left = -58.0
+offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0.007843138, 0.23921569, 1)
-theme_override_fonts/font = ExtResource("6_3huio")
-text = "Floor 0"
+text = "Floor: 0"
 
 [node name="ammocounter" type="Label" parent="." unique_id=8114585]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -115.0
-offset_top = -38.0
-offset_bottom = -15.0
+offset_left = -58.0
+offset_top = -39.0
+offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Ammunition: 0"
 
-[node name="moneycounter" type="Label" parent="." unique_id=466883696]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -53.0
-offset_right = -1.0
-offset_bottom = -30.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "money: 0"
 [node name="RevolverGraphic" type="Control" parent="." unique_id=1445741677]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
@@ -369,17 +324,3 @@ rotation = 5.2359877
 pivot_offset = Vector2(18, 60)
 texture = ExtResource("2_rns2u")
 expand_mode = 1
-
-[node name="PauseMenu" parent="." unique_id=1177030730 instance=ExtResource("10_g2v8e")]
-layout_mode = 1
-
-[node name="FadeTransition" parent="." unique_id=1777364869 instance=ExtResource("11_g2v8e")]
-layout_mode = 1
-
-[node name="SettingsMenu" parent="." unique_id=1257633496 instance=ExtResource("14_1kaiv")]
-process_mode = 3
-z_index = 4
-layout_mode = 1
-
-[node name="DeathMenu" parent="." unique_id=401381865 instance=ExtResource("14_upmhx")]
-layout_mode = 1

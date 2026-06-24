@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://kmb12f0e2qpx"]
+
+[ext_resource type="FontFile" uid="uid://cbkdrngeg8eb5" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://77oky25duswe" path="res://scripts/main_menu.gd" id="1_wu84c"]
+[ext_resource type="PackedScene" uid="uid://cq3xqkkeb4yyq" path="res://scenes/nine_patch_button.tscn" id="2_bqqt6"]
+[ext_resource type="PackedScene" uid="uid://3p3okus2e73h" path="res://scenes/settings_menu.tscn" id="3_bqqt6"]
+[ext_resource type="PackedScene" uid="uid://kek4bffv1kob" path="res://scenes/fade_transition.tscn" id="5_8ln24"]
+
+[node name="MainMenu" type="Control" unique_id=2144351939]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wu84c")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1685700220]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -424.0
+offset_top = -251.0
+offset_right = 461.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_fonts/normal_font = ExtResource("1_ekxnf")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[wave freq=5]Placeholder Title[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="Control" parent="." unique_id=416116691]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 56.0
+offset_right = 50.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options" unique_id=1177260423]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" parent="Options/VBoxContainer" unique_id=503859571 instance=ExtResource("2_bqqt6")]
+layout_mode = 2
+text = "Play"
+
+[node name="SettingsButton" parent="Options/VBoxContainer" unique_id=304487281 instance=ExtResource("2_bqqt6")]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" parent="Options/VBoxContainer" unique_id=1960122967 instance=ExtResource("2_bqqt6")]
+layout_mode = 2
+text = "Quit"
+
+[node name="SettingsMenu" parent="." unique_id=1257633496 instance=ExtResource("3_bqqt6")]
+z_index = 2
+layout_mode = 1
+
+[node name="FadeTransition" parent="." unique_id=1777364869 instance=ExtResource("5_8ln24")]
+z_index = 1
+layout_mode = 1

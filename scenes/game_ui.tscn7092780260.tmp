@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://b41onetcmh4ne"]
+
+[ext_resource type="Script" uid="uid://bilgrwtmyf4ql" path="res://scripts/revolver_graphic.gd" id="1_u2dgd"]
+[ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/heads_up_display.png" id="1_yubou"]
+[ext_resource type="Texture2D" uid="uid://yxkhpf5oeyid" path="res://resources/empty_bullet.tres" id="2_rns2u"]
+[ext_resource type="Texture2D" uid="uid://c23wwqblt0lm8" path="res://resources/full_bullet.tres" id="3_bt76a"]
+
+[sub_resource type="GDScript" id="GDScript_ojb23"]
+resource_name = "game_ui"
+script/source = "extends Control
+
+@onready var health_bar: ProgressBar = $Control/VBoxContainer/HealthBar
+@onready var floor_counter: Label = $FloorCounter
+@onready var player: Player = %Player
+@onready var game_manager: GameManager = %GameManager
+@onready var ammocounter = $ammocounter
+
+
+func _process(_delta: float) -> void:
+	if player:
+		health_bar.value = player.health_component.health
+		health_bar.max_value = player.health_component.max_health
+		floor_counter.text = \"floor \" + str(game_manager.current_floor)
+		ammocounter.text = \"ammunition \" + str(player.ammunition)
+"
+
+[sub_resource type="Animation" id="Animation_u001w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpinnyBit:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_u2dgd"]
+resource_name = "barrel_spin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpinnyBit:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.96666664, 1),
+"transitions": PackedFloat32Array(0.18946461, 25.106693, 1),
+"update": 0,
+"values": [0.0, -1.0471975511965976, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bt76a"]
+_data = {
+&"RESET": SubResource("Animation_u001w"),
+&"barrel_spin": SubResource("Animation_u2dgd")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rns2u"]
+atlas = ExtResource("1_yubou")
+region = Rect2(0, 0, 46, 55)
+
+[node name="GameUI" type="Control" unique_id=2131139602]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_ojb23")
+
+[node name="Control" type="Control" parent="." unique_id=1152021871]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 200.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=70523324]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=1051804231]
+layout_mode = 2
+
+[node name="FloorCounter" type="Label" parent="." unique_id=1300781215]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Floor: 0"
+
+[node name="ammocounter" type="Label" parent="." unique_id=8114585]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -39.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Ammunition: 0"
+
+[node name="RevolverGraphic" type="Control" parent="." unique_id=1445741677]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+script = ExtResource("1_u2dgd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RevolverGraphic" unique_id=865720717]
+libraries/ = SubResource("AnimationLibrary_bt76a")
+
+[node name="SpinnyBit" type="Control" parent="RevolverGraphic" unique_id=767805215]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Barrel" type="TextureRect" parent="RevolverGraphic/SpinnyBit" unique_id=1045947084]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -27.5
+offset_right = 23.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(23, 27)
+texture = SubResource("AtlasTexture_rns2u")
+expand_mode = 1
+
+[node name="Bullet1" type="TextureRect" parent="RevolverGraphic/SpinnyBit" unique_id=640647551]
+layout_mode = 0
+offset_left = -18.0
+offset_top = -60.0
+offset_right = 18.0
+offset_bottom = -24.0
+pivot_offset = Vector2(18, 60)
+texture = ExtResource("3_bt76a")
+expand_mode = 1
+
+[node name="Bullet2" type="TextureRect" parent="RevolverGraphic/SpinnyBit" unique_id=539266238]
+layout_mode = 0
+offset_left = -18.0
+offset_top = -60.0
+offset_right = 18.0
+offset_bottom = -24.0
+rotation = 1.0471976
+pivot_offset = Vector2(18, 60)
+texture = ExtResource("2_rns2u")
+expand_mode = 1
+
+[node name="Bullet3" type="TextureRect" parent="RevolverGraphic/SpinnyBit" unique_id=33213841]
+layout_mode = 0
+offset_left = -18.0
+offset_top = -60.0
+offset_right = 18.0
+offset_bottom = -24.0
+rotation = 2.0943952
+pivot_offset = Vector2(18, 60)
+texture = ExtResource("2_rns2u")
+expand_mode = 1
+
+[node name="Bullet4" type="TextureRect" parent="RevolverGraphic/SpinnyBit" unique_id=1785777659]
+layout_mode = 0
+offset_left = -18.0
+offset_top = -60.0
+offset_right = 18.0
+offset_bottom = -24.0
+rotation = 3.1415927
+pivot_offset = Vector2(18, 60)
+texture = ExtResource("2_rns2u")
+expand_mode = 1
+
+[node name="Bullet5" type="TextureRect" parent="RevolverGraphic/SpinnyBit" unique_id=1240077347]
+layout_mode = 0
+offset_left = -18.0
+offset_top = -60.0
+offset_right = 18.0
+offset_bottom = -24.0
+rotation = 4.1887903
+pivot_offset = Vector2(18, 60)
+texture = ExtResource("2_rns2u")
+expand_mode = 1
+
+[node name="Bullet6" type="TextureRect" parent="RevolverGraphic/SpinnyBit" unique_id=1634943159]
+layout_mode = 0
+offset_left = -18.0
+offset_top = -60.0
+offset_right = 18.0
+offset_bottom = -24.0
+rotation = 5.2359877
+pivot_offset = Vector2(18, 60)
+texture = ExtResource("2_rns2u")
+expand_mode = 1

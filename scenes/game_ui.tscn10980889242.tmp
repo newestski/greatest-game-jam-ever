@@ -1,26 +1,5 @@
 [gd_scene format=3 uid="uid://b41onetcmh4ne"]
 
-[sub_resource type="GDScript" id="GDScript_ojb23"]
-resource_name = "game_ui"
-script/source = "extends Control
-
-@onready var health_bar: ProgressBar = $Control/VBoxContainer/HealthBar
-@onready var floor_counter: Label = $FloorCounter
-@onready var player: Player = %Player
-@onready var game_manager: GameManager = %GameManager
-@onready var ammocounter = $ammocounter
-@onready var moneycounter = $moneycounter
-
-
-
-func _process(_delta: float) -> void:
-	if player:
-		health_bar.value = player.health_component.health
-		health_bar.max_value = player.health_component.max_health
-		floor_counter.text = \"floor \" + str(game_manager.current_floor)
-		ammocounter.text = \"ammunition \" + str(player.ammunition)
-		moneycounter.text = \"money  \" + str(Global.money)
-"
 [ext_resource type="Script" uid="uid://bbwic80negc6m" path="res://scripts/game_ui.gd" id="1_bt76a"]
 [ext_resource type="Script" uid="uid://bilgrwtmyf4ql" path="res://scripts/revolver_graphic.gd" id="1_u2dgd"]
 [ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="1_yubou"]
@@ -30,10 +9,10 @@ func _process(_delta: float) -> void:
 [ext_resource type="FontFile" uid="uid://cbkdrngeg8eb5" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_djwj0"]
 [ext_resource type="AudioStream" uid="uid://dnurccof7oif6" path="res://assets/sounds/player_hurt.wav" id="5_o3bws"]
 [ext_resource type="FontFile" uid="uid://cuqey5iojt3xp" path="res://assets/fonts/PixelOperator8.ttf" id="6_3huio"]
-[ext_resource type="PackedScene" uid="uid://ej45h4uaijvi" path="res://scenes/pause_menu.tscn" id="10_g2v8e"]
-[ext_resource type="PackedScene" uid="uid://kek4bffv1kob" path="res://scenes/fade_transition.tscn" id="11_g2v8e"]
-[ext_resource type="PackedScene" uid="uid://3p3okus2e73h" path="res://scenes/settings_menu.tscn" id="14_1kaiv"]
-[ext_resource type="PackedScene" uid="uid://djlikehuyw5gi" path="res://scenes/death_menu.tscn" id="14_upmhx"]
+[ext_resource type="Script" uid="uid://cbgofoa7y1h2n" path="res://scenes/pause_menu.gd" id="10_s2npe"]
+[ext_resource type="Theme" uid="uid://bdkppv8d4rtqo" path="res://resources/menus_theme.tres" id="10_sjwyb"]
+[ext_resource type="PackedScene" uid="uid://cq3xqkkeb4yyq" path="res://scenes/nine_patch_button.tscn" id="11_5kh4o"]
+[ext_resource type="Script" uid="uid://jk01dv3ejj50" path="res://scenes/fade_transition.gd" id="13_g2v8e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt76a"]
 atlas = ExtResource("1_yubou")
@@ -149,6 +128,67 @@ _data = {
 atlas = ExtResource("1_yubou")
 region = Rect2(0, 0, 46, 55)
 
+[sub_resource type="Animation" id="Animation_s2npe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(526, 284)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g2v8e"]
+resource_name = "open"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.35355347, 1),
+"update": 0,
+"values": [Vector2(526, 200), Vector2(526, 284)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1kaiv"]
+_data = {
+&"RESET": SubResource("Animation_s2npe"),
+&"open": SubResource("Animation_g2v8e")
+}
+
 [node name="MainGameUI" type="Control" unique_id=2131139602 groups=["game_ui"]]
 layout_mode = 3
 anchors_preset = 15
@@ -221,34 +261,19 @@ theme_override_fonts/font = ExtResource("6_3huio")
 text = "Floor 0"
 
 [node name="ammocounter" type="Label" parent="." unique_id=8114585]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -115.0
-offset_top = -38.0
-offset_bottom = -15.0
+offset_left = -58.0
+offset_top = -39.0
+offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Ammunition: 0"
 
-[node name="moneycounter" type="Label" parent="." unique_id=466883696]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -53.0
-offset_right = -1.0
-offset_bottom = -30.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "money: 0"
 [node name="RevolverGraphic" type="Control" parent="." unique_id=1445741677]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
@@ -370,16 +395,79 @@ pivot_offset = Vector2(18, 60)
 texture = ExtResource("2_rns2u")
 expand_mode = 1
 
-[node name="PauseMenu" parent="." unique_id=1177030730 instance=ExtResource("10_g2v8e")]
+[node name="PauseMenu" type="Control" parent="." unique_id=578064645]
+z_index = 1
+custom_minimum_size = Vector2(100, 80)
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -40.0
+offset_right = 50.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("10_s2npe")
 
-[node name="FadeTransition" parent="." unique_id=1777364869 instance=ExtResource("11_g2v8e")]
+[node name="NinePatchRect" type="NinePatchRect" parent="PauseMenu" unique_id=1157893690]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yubou")
+region_rect = Rect2(95, 0, 9, 9)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 
-[node name="SettingsMenu" parent="." unique_id=1257633496 instance=ExtResource("14_1kaiv")]
-process_mode = 3
-z_index = 4
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/NinePatchRect" unique_id=1871181728]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("10_sjwyb")
 
-[node name="DeathMenu" parent="." unique_id=401381865 instance=ExtResource("14_upmhx")]
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/NinePatchRect/MarginContainer" unique_id=747058350]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/NinePatchRect/MarginContainer/VBoxContainer" unique_id=772829999]
+layout_mode = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="UpauseButton" parent="PauseMenu/NinePatchRect/MarginContainer/VBoxContainer" unique_id=503859571 instance=ExtResource("11_5kh4o")]
+layout_mode = 2
+
+[node name="SettingsButton" parent="PauseMenu/NinePatchRect/MarginContainer/VBoxContainer" unique_id=865966051 instance=ExtResource("11_5kh4o")]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" parent="PauseMenu/NinePatchRect/MarginContainer/VBoxContainer" unique_id=995750023 instance=ExtResource("11_5kh4o")]
+layout_mode = 2
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu" unique_id=1531459884]
+libraries/ = SubResource("AnimationLibrary_1kaiv")
+
+[node name="FadeTransition" type="Panel" parent="." unique_id=888223104]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_sjwyb")
+script = ExtResource("13_g2v8e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeTransition" unique_id=540797795]
