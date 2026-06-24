@@ -1,26 +1,5 @@
 [gd_scene format=3 uid="uid://b41onetcmh4ne"]
 
-[sub_resource type="GDScript" id="GDScript_ojb23"]
-resource_name = "game_ui"
-script/source = "extends Control
-
-@onready var health_bar: ProgressBar = $Control/VBoxContainer/HealthBar
-@onready var floor_counter: Label = $FloorCounter
-@onready var player: Player = %Player
-@onready var game_manager: GameManager = %GameManager
-@onready var ammocounter = $ammocounter
-@onready var moneycounter = $moneycounter
-
-
-
-func _process(_delta: float) -> void:
-	if player:
-		health_bar.value = player.health_component.health
-		health_bar.max_value = player.health_component.max_health
-		floor_counter.text = \"floor \" + str(game_manager.current_floor)
-		ammocounter.text = \"ammunition \" + str(player.ammunition)
-		moneycounter.text = \"money  \" + str(Global.money)
-"
 [ext_resource type="Script" uid="uid://bbwic80negc6m" path="res://scripts/game_ui.gd" id="1_bt76a"]
 [ext_resource type="Script" uid="uid://bilgrwtmyf4ql" path="res://scripts/revolver_graphic.gd" id="1_u2dgd"]
 [ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="1_yubou"]
@@ -30,6 +9,7 @@ func _process(_delta: float) -> void:
 [ext_resource type="FontFile" uid="uid://cbkdrngeg8eb5" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_djwj0"]
 [ext_resource type="AudioStream" uid="uid://dnurccof7oif6" path="res://assets/sounds/player_hurt.wav" id="5_o3bws"]
 [ext_resource type="FontFile" uid="uid://cuqey5iojt3xp" path="res://assets/fonts/PixelOperator8.ttf" id="6_3huio"]
+[ext_resource type="Theme" uid="uid://bdkppv8d4rtqo" path="res://resources/menus_theme.tres" id="7_1kaiv"]
 [ext_resource type="PackedScene" uid="uid://ej45h4uaijvi" path="res://scenes/pause_menu.tscn" id="10_g2v8e"]
 [ext_resource type="PackedScene" uid="uid://kek4bffv1kob" path="res://scenes/fade_transition.tscn" id="11_g2v8e"]
 [ext_resource type="PackedScene" uid="uid://3p3okus2e73h" path="res://scenes/settings_menu.tscn" id="14_1kaiv"]
@@ -220,21 +200,6 @@ theme_override_colors/font_shadow_color = Color(0, 0.007843138, 0.23921569, 1)
 theme_override_fonts/font = ExtResource("6_3huio")
 text = "Floor 0"
 
-[node name="ammocounter" type="Label" parent="." unique_id=8114585]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -115.0
-offset_top = -38.0
-offset_bottom = -15.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Ammunition: 0"
-
 [node name="moneycounter" type="Label" parent="." unique_id=466883696]
 layout_mode = 1
 anchors_preset = 3
@@ -242,13 +207,18 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -53.0
-offset_right = -1.0
-offset_bottom = -30.0
+offset_left = -123.0
+offset_top = -65.0
+offset_right = -17.0
+offset_bottom = -42.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("7_1kaiv")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.007843138, 0.23921569, 1)
+theme_override_font_sizes/font_size = 16
 text = "money: 0"
+
 [node name="RevolverGraphic" type="Control" parent="." unique_id=1445741677]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
@@ -374,6 +344,7 @@ expand_mode = 1
 layout_mode = 1
 
 [node name="FadeTransition" parent="." unique_id=1777364869 instance=ExtResource("11_g2v8e")]
+visible = false
 layout_mode = 1
 
 [node name="SettingsMenu" parent="." unique_id=1257633496 instance=ExtResource("14_1kaiv")]

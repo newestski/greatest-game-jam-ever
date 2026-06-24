@@ -55,7 +55,8 @@ func shoot_at_position(bullet_path: String, target_position: Vector2):
 	#instance bullet
 	var packed_bullet: PackedScene = load(bullet_path)
 	var instanced_bullet: Bullet = packed_bullet.instantiate()
-	get_tree().root.get_child(0).add_child(instanced_bullet)
+	if get_tree().root.has_node("/root/Root"):
+		get_tree().root.get_node("/root/Root").add_child.call_deferred(instanced_bullet)
 	
 	#set bullets position/rotation
 	instanced_bullet.damage_team = team
