@@ -16,7 +16,6 @@ var enemies_left = 0
 var current_level: Level
 
 
-
 func _ready():
 	# swap if you need to use the debug lvl
 	# generate_level("res://scenes/levels/level_debug.tscn")
@@ -86,7 +85,8 @@ func generate_level(level_path: String):
 	#instance level layout
 	var packed_level: PackedScene = load(level_path)
 	var instanced_level: Node2D = packed_level.instantiate()
-	get_tree().root.get_child(0).add_child.call_deferred(instanced_level)
+	if get_tree().root.has_node("/root/Root"):
+		get_tree().root.get_node("/root/Root").add_child.call_deferred(instanced_level)
 	
 	current_level = instanced_level
 	
@@ -104,7 +104,8 @@ func spawn_enemy(enemy_path: String, position: Vector2):
 	
 	var packed_enemy: PackedScene = load(enemy_path)
 	var instanced_enemy: Node2D = packed_enemy.instantiate()
-	get_tree().root.get_child(0).add_child.call_deferred(instanced_enemy)
+	if get_tree().root.has_node("/root/Root"):
+		get_tree().root.get_node("/root/Root").add_child.call_deferred(instanced_enemy)
 	
 	instanced_enemy.position = position
 	enemies_left += 1

@@ -1,5 +1,5 @@
 extends Control
-class_name shop_slot
+class_name ShopSlot
 
 #ik that making diffrent pixels sizes is bad for the game look but i didnt wanted the text to be so big :/
 
@@ -24,11 +24,8 @@ var player: Node2D
 var health_component: Node
 var team: String
 
-
 var avaiable_upgrades = Global.upgrades.keys() #gets the upgrade dictionary
 var upgrade_on_slot = avaiable_upgrades.pick_random() #picks a random upgrade
-
-
 
 func _ready():
 	print(upgrade_on_slot)
