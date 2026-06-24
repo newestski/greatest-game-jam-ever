@@ -24,6 +24,7 @@ func _ready():
 
 func play_hurt_sound():
 	var sound = AudioStreamPlayer2D.new()
+	sound.bus = "Sounds"
 	sound.stream = hurt_sound
 	print(sound)
 	add_child(sound)

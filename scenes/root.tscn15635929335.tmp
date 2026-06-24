@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://coi7wvn2ql6ux" path="res://scripts/game_manager.gd" id="3_sqa0i"]
 [ext_resource type="Script" uid="uid://dr4qnl6vhby4a" path="res://scripts/music_manager.gd" id="4_sqa0i"]
 [ext_resource type="AudioStream" uid="uid://dp5nd83w23rby" path="res://assets/sounds/revolution_base.mp3" id="5_jh1ax"]
-[ext_resource type="AudioStream" uid="uid://dvuie70wt4lhn" path="res://assets/sounds/revolution_panic.mp3" id="6_kycxp"]
 
 [node name="Root" type="Node" unique_id=1944798513]
 
@@ -29,17 +28,12 @@ script = ExtResource("3_sqa0i")
 metadata/_custom_type_script = "uid://coi7wvn2ql6ux"
 
 [node name="MusicManager" type="Node" parent="." unique_id=888475903]
-unique_name_in_owner = true
 script = ExtResource("4_sqa0i")
 
 [node name="RevolutionBase" type="AudioStreamPlayer" parent="MusicManager" unique_id=307018416]
 stream = ExtResource("5_jh1ax")
-volume_db = -5.0
 bus = &"Music"
-parameters/looping = true
 
 [node name="RevolutionPanic" type="AudioStreamPlayer" parent="MusicManager" unique_id=1320569139]
-stream = ExtResource("6_kycxp")
-volume_db = -5.0
+stream = ExtResource("5_jh1ax")
 bus = &"Music"
-parameters/looping = true
