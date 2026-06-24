@@ -2,6 +2,7 @@ class_name MusicManager
 
 extends Node
 
+@onready var player: Player = %Player
 @onready var music_revolution_base: AudioStreamPlayer = $RevolutionBase
 @onready var music_revolution_panic: AudioStreamPlayer = $RevolutionPanic
 @onready var game_manager: GameManager = %GameManager
@@ -19,6 +20,11 @@ func _ready() -> void:
 	start_adaptive_song([music_revolution_base, music_revolution_panic], [true, true])
 	game_manager.floor_cleared.connect(set_song_to_base_varient)
 	game_manager.new_floor.connect(set_song_to_panic_varient)
+	player.health_component.death.connect(set_song_to_base_varient)
+
+
+func fade_out():
+	adjust_adaptive_song([false,false], 1)
 
 
 func set_song_to_base_varient():
