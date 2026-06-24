@@ -12,15 +12,15 @@ var damage_team: String
 
 
 #abstract classes to be overwritten
-func on_spawned():
+func on_spawned() -> void:
 	pass
 
 
-func on_death():
+func on_death() -> void:
 	pass
 
 
-func on_movement_step():
+func on_movement_step(_delta) -> void:
 	pass # called every physics step after movement is complete
 
 
@@ -28,8 +28,9 @@ func on_movement_step():
 func _ready():
 	hurt_box.body_entered.connect(_on_hurt_box_body_entered)
 	
-	var timer = get_tree().create_timer(lifespan)
-	timer.timeout.connect(die)
+	if lifespan > 0:
+		var timer = get_tree().create_timer(lifespan)
+		timer.timeout.connect(die)
 	
 	on_spawned()
 
@@ -41,7 +42,7 @@ func die():
 # deals with movement of bullet
 func _physics_process(delta: float) -> void:
 	position += Vector2(0,velocity).rotated(rotation) * delta
-	on_movement_step()
+	on_movement_step(delta)
 
 
 # deals with damage of bullet
