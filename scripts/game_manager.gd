@@ -14,6 +14,7 @@ var shop_level_path = "res://scenes/levels/level_shop.tscn"
 var intro_level_path = "res://scenes/levels/level_intro.tscn"
 var boss_level_path = "res://scenes/levels/level_boss.tscn"
 var floors_between_shops: int = 5
+var final_floor: int = 16
 var enemy_spawn_atlas_coords = Vector2i(9,0) #location in the tilesheet that coorisponds to the player spawn tile
 var player_spawn_atlas_coords = Vector2i(9,1) #location in the tilesheet that coorisponds to the enemy spawn tile
 var starting_money = 0
@@ -31,7 +32,7 @@ signal floor_cleared
 func _ready():
 	# swap if you need to use the debug lvl
 	# generate_level("res://scenes/levels/level_debug.tscn")
-	generate_level_of_type(floor_types.BOSS)
+	generate_level_of_type(floor_types.INTRO)
 	Global.money = starting_money
 	game_ui.fade_in()
 
@@ -45,7 +46,7 @@ func go_to_next_floor():
 	current_floor += 1
 	if current_floor % floors_between_shops == 0:
 		generate_level_of_type(floor_types.SHOP)
-	else:
+	elif current_floor:
 		generate_level_of_type(floor_types.STANDARD)
 	game_ui.fade_transition.animation_player.play("full_fade_in")
 	await game_ui.fade_transition.animation_player.animation_finished
