@@ -13,7 +13,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	game_manager = get_tree().get_first_node_in_group("game_manager")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player.dash_meter < texture_progress_bar.value:
 		update_dash_bar()
 	texture_progress_bar.value = player.dash_meter

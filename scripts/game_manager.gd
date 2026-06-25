@@ -2,7 +2,7 @@ class_name GameManager
 
 extends Node
 
-enum floor_types{STANDARD, SHOP, INTRO}
+enum floor_types{STANDARD, SHOP, INTRO, BOSS}
 
 @onready var player: Player = %Player
 @onready var game_ui: MainGameUI = %GameUI
@@ -12,7 +12,9 @@ var enemy_folder = "res://scenes/enemies" # directory of all spawnable enemies
 var main_menu_path = "res://scenes/main_menu.tscn" # scene that should be loaded when the player is sent to the main menu
 var shop_level_path = "res://scenes/levels/level_shop.tscn"
 var intro_level_path = "res://scenes/levels/level_intro.tscn"
-var floors_between_shops: int = 5
+var boss_level_path = "res://scenes/levels/level_boss.tscn"
+var floors_between_shops: int = 5 #floors between each shop
+var final_floor: int = 16 #floor the final boss is on
 var enemy_spawn_atlas_coords = Vector2i(9,0) #location in the tilesheet that coorisponds to the player spawn tile
 var player_spawn_atlas_coords = Vector2i(9,1) #location in the tilesheet that coorisponds to the enemy spawn tile
 var starting_money = 0
@@ -44,12 +46,15 @@ func go_to_next_floor():
 	current_floor += 1
 	if current_floor % floors_between_shops == 0:
 		generate_level_of_type(floor_types.SHOP)
+	elif current_floor >= final_floor:
+		generate_level_of_type(floor_types.BOSS)
 	else:
 		generate_level_of_type(floor_types.STANDARD)
 	game_ui.fade_transition.animation_player.play("full_fade_in")
 	await game_ui.fade_transition.animation_player.animation_finished
 	currently_transitioning = false
 	new_floor.emit()
+
 
 func go_to_main_menu():
 	get_tree().change_scene_to_file(main_menu_path)
@@ -122,12 +127,15 @@ func generate_level(level_path: String):
 
 func generate_level_of_type(type: floor_types):
 	print(type)
+	current_level_type = type
 	if type == floor_types.STANDARD:
 		generate_random_level()
 	elif type == floor_types.SHOP:
 		generate_level(shop_level_path)
 	elif type == floor_types.INTRO:
 		generate_level(intro_level_path)
+	elif type == floor_types.BOSS:
+		generate_level(boss_level_path)
 
 
 #spawns the enemy of the given file path at the given position
@@ -141,6 +149,8 @@ func spawn_enemy(enemy_path: String, position: Vector2):
 	
 	instanced_enemy.position = position
 	enemies_left += 1
+	
+	return instanced_enemy
 
 
 # deletes every enemy currently in the level

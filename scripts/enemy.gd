@@ -61,6 +61,7 @@ func shoot_at_position(bullet_path: String, target_position: Vector2):
 	instanced_bullet.damage_team = team
 	instanced_bullet.global_position = global_position
 	instanced_bullet.rotation = (global_position-target_position).angle()+PI/2
+	return instanced_bullet
 
 
 # checks the line of sight between the enemy's current position and the target position

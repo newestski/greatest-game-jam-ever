@@ -41,6 +41,10 @@ game_ui=""
 fade_transition=""
 settings_menu=""
 pause_menu=""
+boss_waypoint=""
+music_manager=""
+win_menu=""
+boss_bar=""
 
 [input]
 

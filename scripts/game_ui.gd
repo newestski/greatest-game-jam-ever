@@ -9,6 +9,8 @@ extends Control
 @onready var health_bar: Control = $HealthBar
 @onready var fade_transition: FadeTransition = $FadeTransition
 @onready var moneycounter: Label = $moneycounter
+@onready var boss_bar: BossBar = $BossBar
+@onready var win_menu: WinMenu = $WinMenu
 
 
 func _process(_delta: float) -> void:
