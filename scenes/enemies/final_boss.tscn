@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://v46e3yo41ho1" path="res://scripts/health_component.gd" id="2_4do5p"]
 [ext_resource type="AudioStream" uid="uid://bk8lwqshshelv" path="res://assets/sounds/hurt.wav" id="3_s8evt"]
 [ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="4_3uqse"]
+[ext_resource type="AudioStream" uid="uid://bgsypmskosu55" path="res://assets/sounds/warp.wav" id="5_4do5p"]
+[ext_resource type="AudioStream" uid="uid://p84sbaumwk8p" path="res://assets/sounds/prepare.wav" id="6_3uqse"]
+[ext_resource type="AudioStream" uid="uid://jrahe5b24yr6" path="res://assets/sounds/swoosh.wav" id="7_bhnfq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8tegq"]
 radius = 13.038404
@@ -51,3 +54,18 @@ angle_max = 720.0
 scale_amount_min = 10.0
 scale_amount_max = 14.8
 color_ramp = SubResource("Gradient_f8x14")
+
+[node name="TeleportSound" type="AudioStreamPlayer2D" parent="." unique_id=606482119]
+stream = ExtResource("5_4do5p")
+volume_db = 2.0
+bus = &"Sounds"
+
+[node name="ChargeDashSound" type="AudioStreamPlayer2D" parent="." unique_id=735933973]
+stream = ExtResource("6_3uqse")
+volume_db = 5.0
+bus = &"Sounds"
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="." unique_id=85685311]
+stream = ExtResource("7_bhnfq")
+volume_db = 2.0
+bus = &"Sounds"

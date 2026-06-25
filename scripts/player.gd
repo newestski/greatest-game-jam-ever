@@ -26,7 +26,7 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 @export var special_attack_speed_threshold: float = 1500 # minimum speed required to use special attack (deg/s)
 @export var team: String = "player" # the team attributed to damage created by the player (prevents friendly fire)
 @export var max_dashes: float = 3 # max dashes you can have at once
-@export var dash_recharge_time: float = 1 # time it takes to regain 1 dash (sec)
+@export var dash_recharge_time: float = 2 # time it takes to regain 1 dash (sec)
 @export var dash_strength: float = 350
 @export var walk_acceleration: float = 1000
 
@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	
 	# dashing
 	if dash_meter < max_dashes:
-		dash_meter += delta * dash_recharge_time
+		dash_meter += delta / dash_recharge_time
 	else:
 		dash_meter = max_dashes
 	if Input.is_action_just_pressed("dash"):

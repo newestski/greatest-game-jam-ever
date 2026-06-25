@@ -27,6 +27,7 @@ func open(delay):
 	fade_transition.animation_player.play("half_fade_out")
 	animation_player.play("open")
 	get_tree().paused = true
+	$FanfareSound.play()
 
 
 func quit():

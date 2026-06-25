@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="2_ah3fa"]
 [ext_resource type="Theme" uid="uid://bdkppv8d4rtqo" path="res://resources/menus_theme.tres" id="3_1xbon"]
 [ext_resource type="PackedScene" uid="uid://cq3xqkkeb4yyq" path="res://scenes/nine_patch_button.tscn" id="4_xtbbn"]
+[ext_resource type="AudioStream" uid="uid://b83027q6xtoks" path="res://assets/sounds/fanfare.mp3" id="5_ah3fa"]
 
 [sub_resource type="Animation" id="Animation_s2npe"]
 length = 0.001
@@ -171,6 +172,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.3333359
+offset_top = -1.3333321
+offset_right = -1.3333435
+offset_bottom = -1.3333282
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_1xbon")
@@ -208,3 +213,6 @@ text = "Back to menu
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1971962702]
 libraries/ = SubResource("AnimationLibrary_1kaiv")
+
+[node name="FanfareSound" type="AudioStreamPlayer" parent="." unique_id=743093213]
+stream = ExtResource("5_ah3fa")
