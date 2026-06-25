@@ -7,11 +7,102 @@
 [ext_resource type="AudioStream" uid="uid://bk8lwqshshelv" path="res://assets/sounds/hurt.wav" id="4_fjrip"]
 [ext_resource type="AudioStream" uid="uid://bapyat4beqcpe" path="res://assets/sounds/shoot2.wav" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://cpo8ht0gvbhnl" path="res://assets/sounds/player_death.wav" id="6_smehm"]
+[ext_resource type="Texture2D" uid="uid://cgk0ydgp4gp4h" path="res://assets/images/crosshair.png" id="7_ur7pv"]
 [ext_resource type="AudioStream" uid="uid://4svbctpcwk42" path="res://assets/sounds/step.wav" id="8_smehm"]
 [ext_resource type="AudioStream" uid="uid://dj7oevhhqw1ya" path="res://assets/sounds/shockwave.wav" id="9_ur7pv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_28aoi"]
 radius = 8.0
+
+[sub_resource type="Animation" id="Animation_ur7pv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun_position/crosshair:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gun_position/crosshair:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_d2wvv"]
+resource_name = "focused"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun_position/crosshair:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 119)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gun_position/crosshair:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [12.566371]
+}
+
+[sub_resource type="Animation" id="Animation_y4r1p"]
+resource_name = "focusing"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun_position/crosshair:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, 119)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gun_position/crosshair:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.566371]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d2wvv"]
+_data = {
+&"RESET": SubResource("Animation_ur7pv"),
+&"focused": SubResource("Animation_d2wvv"),
+&"focusing": SubResource("Animation_y4r1p")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=1929232658]
 collision_layer = 2
@@ -52,6 +143,13 @@ bus = &"Sounds"
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="gun_position" unique_id=65854377]
 stream = ExtResource("5_qlg0r")
 bus = &"Sounds"
+
+[node name="crosshair" type="Sprite2D" parent="gun_position" unique_id=1120537936]
+visible = false
+z_index = 10
+z_as_relative = false
+position = Vector2(0, 5)
+texture = ExtResource("7_ur7pv")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=616613772]
 stream = ExtResource("6_smehm")

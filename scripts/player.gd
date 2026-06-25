@@ -13,6 +13,8 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 @onready var shoot_sound: AudioStreamPlayer2D = $gun_position/ShootSound
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 @onready var step_sound: AudioStreamPlayer2D = $StepSound
+@onready var crosshair = $gun_position/crosshair
+@onready var anim_player = $AnimationPlayer
 @onready var special_sound: AudioStreamPlayer2D = $SpecialSound
 
 @export var reload_speed: float = 0.7 #time to load every bullet
@@ -130,6 +132,8 @@ func spawn_bullet(path):
 func _input(event: InputEvent) -> void:
 	#handle focus mode
 	if event.is_action_pressed("focus_spin"):
+		crosshair.visible = true
+		anim_player.play("focusing")
 		#activate special if fast enough
 		if spin_speed >= special_attack_speed_threshold:
 			special_attack()
@@ -138,6 +142,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("focus_spin"):
 		#set speed
 		spin_speed = fast_spin_speed
+		crosshair.visible = false
+		anim_player.play("RESET")
 
 
 func special_attack():

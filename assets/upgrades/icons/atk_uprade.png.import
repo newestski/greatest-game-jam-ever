@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwnfyvssoqje3"
-path="res://.godot/imported/firerate_upgrade.png-a4c5a87163665a5e231e1204e177574a.ctex"
+uid="uid://daus8htj3ok80"
+path="res://.godot/imported/atk_uprade.png-3bb9054129a928bf7d869e90dbca832d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/upgrades/firerate_upgrade.png"
-dest_files=["res://.godot/imported/firerate_upgrade.png-a4c5a87163665a5e231e1204e177574a.ctex"]
+source_file="res://assets/upgrades/icons/atk_uprade.png"
+dest_files=["res://.godot/imported/atk_uprade.png-3bb9054129a928bf7d869e90dbca832d.ctex"]
 
 [params]
 

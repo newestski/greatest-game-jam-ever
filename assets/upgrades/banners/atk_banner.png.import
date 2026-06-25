@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hvac26w20prv"
-path="res://.godot/imported/hp_uprade.png-bf67ba481ef4c5c015174e02347144a5.ctex"
+uid="uid://53fpjlsr0ooh"
+path="res://.godot/imported/atk_banner.png-059aff19931e4be1e514555319e6bd0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/upgrades/hp_uprade.png"
-dest_files=["res://.godot/imported/hp_uprade.png-bf67ba481ef4c5c015174e02347144a5.ctex"]
+source_file="res://assets/upgrades/banners/atk_banner.png"
+dest_files=["res://.godot/imported/atk_banner.png-059aff19931e4be1e514555319e6bd0c.ctex"]
 
 [params]
 
