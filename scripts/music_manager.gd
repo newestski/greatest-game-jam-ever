@@ -5,6 +5,7 @@ extends Node
 @onready var player: Player = %Player
 @onready var music_revolution_base: AudioStreamPlayer = $RevolutionBase
 @onready var music_revolution_panic: AudioStreamPlayer = $RevolutionPanic
+@onready var weirdly_chill_boss_theme: AudioStreamPlayer = $WeirdlyChillBossTheme
 @onready var game_manager: GameManager = %GameManager
 
 var sounds_registry: Dictionary
@@ -28,7 +29,8 @@ func fade_out():
 
 
 func set_song_to_base_varient():
-	adjust_adaptive_song([true,false], 1)
+	if game_manager.current_level_type == game_manager.floor_types.STANDARD:
+		adjust_adaptive_song([true,false], 1)
 
 
 func set_song_to_panic_varient():
@@ -44,6 +46,7 @@ func new_floor():
 		set_song_to_base_varient()
 	else:
 		set_song_to_panic_varient()
+
 
 # plays multiple audio players syncronized with the ability to mute and unmute at will
 # audio_array = array of audio tracks to be played

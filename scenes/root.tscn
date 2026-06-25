@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dr4qnl6vhby4a" path="res://scripts/music_manager.gd" id="4_sqa0i"]
 [ext_resource type="AudioStream" uid="uid://dp5nd83w23rby" path="res://assets/sounds/revolution_base.mp3" id="5_jh1ax"]
 [ext_resource type="AudioStream" uid="uid://dvuie70wt4lhn" path="res://assets/sounds/revolution_panic.mp3" id="6_kycxp"]
+[ext_resource type="AudioStream" uid="uid://b0wb4m4uhggpr" path="res://assets/sounds/weirdly_chill_boss_theme.mp3" id="7_j287u"]
 
 [node name="Root" type="Node" unique_id=1944798513]
 
@@ -28,7 +29,7 @@ unique_name_in_owner = true
 script = ExtResource("3_sqa0i")
 metadata/_custom_type_script = "uid://coi7wvn2ql6ux"
 
-[node name="MusicManager" type="Node" parent="." unique_id=888475903]
+[node name="MusicManager" type="Node" parent="." unique_id=888475903 groups=["music_manager"]]
 unique_name_in_owner = true
 process_mode = 3
 script = ExtResource("4_sqa0i")
@@ -42,5 +43,11 @@ parameters/looping = true
 [node name="RevolutionPanic" type="AudioStreamPlayer" parent="MusicManager" unique_id=1320569139]
 stream = ExtResource("6_kycxp")
 volume_db = -5.0
+bus = &"Music"
+parameters/looping = true
+
+[node name="WeirdlyChillBossTheme" type="AudioStreamPlayer" parent="MusicManager" unique_id=1538059485]
+stream = ExtResource("7_j287u")
+volume_db = -10.0
 bus = &"Music"
 parameters/looping = true
