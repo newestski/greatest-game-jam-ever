@@ -292,10 +292,10 @@ hurt_sound = ExtResource("4_fjrip")
 metadata/_custom_type_script = "uid://v46e3yo41ho1"
 
 [node name="gun_position" type="Marker2D" parent="." unique_id=1773744750]
-position = Vector2(0, 7)
+position = Vector2(0, 21)
 
 [node name="shot" type="RayCast2D" parent="gun_position" unique_id=2117033699]
-position = Vector2(0, -7)
+position = Vector2(0, -21)
 target_position = Vector2(0, 500)
 collision_mask = 5
 
@@ -318,13 +318,6 @@ z_as_relative = false
 position = Vector2(0, 5)
 rotation = 12.566371
 texture = ExtResource("7_ur7pv")
-
-[node name="Sprite2D" type="Sprite2D" parent="gun_position" unique_id=1394037262]
-position = Vector2(0, 9)
-rotation = 1.5707964
-texture = ExtResource("10_y4r1p")
-region_enabled = true
-region_rect = Rect2(0, 54, 10, 5)
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=616613772]
 stream = ExtResource("6_smehm")
@@ -352,6 +345,13 @@ z_index = -1
 position = Vector2(1, 8)
 scale = Vector2(0.7199998, 1)
 texture = ExtResource("8_d2wvv")
+region_rect = Rect2(0, 54, 10, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1394037262]
+position = Vector2(0, 16)
+rotation = 1.5707964
+texture = ExtResource("10_y4r1p")
+region_enabled = true
 region_rect = Rect2(0, 54, 10, 5)
 
 [connection signal="timeout" from="gun_position/firerate_timer" to="." method="_on_firerate_timer_timeout"]
