@@ -1,6 +1,8 @@
 extends Node
 
 var money = 0 #player money
+var language: String #chooses the language for the game
+var player_name: String #saves the player name for dialogs
 
 #dictionary of upgrades
 var upgrades = {

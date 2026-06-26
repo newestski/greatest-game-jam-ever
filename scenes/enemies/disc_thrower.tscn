@@ -52,7 +52,7 @@ animations = [{
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_if88h")
-reward = 10
+reward = 20
 metadata/_custom_type_script = "uid://dowrttjq23rqv"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1950605407]

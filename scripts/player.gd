@@ -50,6 +50,7 @@ var ammunition: int = 6 # current ammunition
 var dead: bool = false # checks if the player is currently dead
 var time_since_last_step: float = 0 #keeps track of time since last step sfx
 var dash_meter: float = 0
+var talking: bool = false
 
 func _ready() -> void:
 	game_manager = get_tree().get_first_node_in_group("game_manager")
@@ -75,26 +76,26 @@ func _physics_process(delta: float) -> void:
 		dash_meter += delta / dash_recharge_time
 	else:
 		dash_meter = max_dashes
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and talking == false:
 		if dash_meter > 1:
 			velocity = velocity.normalized() * dash_strength
 			dash_meter -= 1
 	
 	# shooting
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and talking == false:
 		if ammunition > 0 and reloading == false and firerate_cooldown == false:
 			shooting()
 	
 	# reloading
-	if Input.is_action_just_pressed("reload"):
+	if Input.is_action_just_pressed("reload") and talking == false:
 		if ammunition < MAX_AMMO and reloading == false: #chceks if your ammunition is less than full and if you arent arleady reloading
 			reload((MAX_AMMO - ammunition)) #says how much money we have to load in
 	
 	# walking
 	var input_direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
-	if velocity.length() <= walk_speed:
+	if velocity.length() <= walk_speed and talking == false:
 		velocity += input_direction * delta * walk_acceleration
-	if input_direction and time_since_last_step > step_interval:
+	if input_direction and time_since_last_step > step_interval and talking == false:
 		play_step_sfx()
 		time_since_last_step = 0
 	

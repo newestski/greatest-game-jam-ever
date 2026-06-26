@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://djcx4vxj4f5wu"]
 
 [ext_resource type="PackedScene" uid="uid://dcxdfuw3ygwxh" path="res://scenes/levels/level_inst.tscn" id="1_7kw4r"]
+[ext_resource type="PackedScene" uid="uid://cr56nernoyrdx" path="res://scenes/liam.tscn" id="2_1lxv7"]
 
 [node name="level_intro" unique_id=1009364 instance=ExtResource("1_7kw4r")]
 
@@ -15,3 +16,7 @@ tile_map_data = PackedByteArray("AADz//P/AAAEAAIAAADz//T/AAAEAAIAAADz//X/AAAEAAI
 
 [node name="TileMapLayerDecorations" parent="." index="3" unique_id=818353779]
 tile_map_data = PackedByteArray("AAD///v/AAAGAAIAAAD///z/AAAGAAMAAAAAAPv/AAAHAAIAAAAAAPz/AAAHAAMAAAD///3/AAAGAAQAAAAAAP3/AAAHAAQAAAD///X/AAAGAAMAAAD///b/AAAGAAQAAAAAAPX/AAAHAAMAAAAAAPb/AAAHAAQAAAD///T/AAAGAAIAAAAAAPT/AAAHAAIAAAA=")
+
+[node name="Liam" parent="." index="4" unique_id=1083752003 instance=ExtResource("2_1lxv7")]
+position = Vector2(0, -21)
+scale = Vector2(0.6, 0.6)
