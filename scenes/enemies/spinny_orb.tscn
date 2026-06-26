@@ -3,10 +3,54 @@
 [ext_resource type="Script" uid="uid://xe1jgv7i0qou" path="res://scripts/spinny_orb.gd" id="1_e8daw"]
 [ext_resource type="Script" uid="uid://v46e3yo41ho1" path="res://scripts/health_component.gd" id="2_avvie"]
 [ext_resource type="AudioStream" uid="uid://bk8lwqshshelv" path="res://assets/sounds/hurt.wav" id="3_avvie"]
-[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="3_ok5xi"]
+[ext_resource type="Texture2D" uid="uid://yw3o4e3agpv2" path="res://assets/images/spinny_orb.png" id="4_avvie"]
+[ext_resource type="Texture2D" uid="uid://bm74n54ibdynl" path="res://assets/images/shadow.png" id="5_ok5xi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8tegq"]
 radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok5xi"]
+atlas = ExtResource("4_avvie")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhgqp"]
+atlas = ExtResource("4_avvie")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_753mq"]
+atlas = ExtResource("4_avvie")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqdm8"]
+atlas = ExtResource("4_avvie")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbyrk"]
+atlas = ExtResource("4_avvie")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_unt1k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok5xi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhgqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_753mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqdm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbyrk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="SpinnyOrb" type="CharacterBody2D" unique_id=243505862 groups=["enemy"]]
 collision_layer = 4
@@ -27,9 +71,22 @@ metadata/_custom_type_script = "uid://v46e3yo41ho1"
 path_postprocessing = 1
 radius = 32.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987956348]
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("3_ok5xi")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=589761609]
 shape = SubResource("CircleShape2D_8tegq")
+
+[node name="OrbSprite" type="AnimatedSprite2D" parent="." unique_id=1276915703]
+sprite_frames = SubResource("SpriteFrames_unt1k")
+frame_progress = 0.8299348
+
+[node name="SpinnySprite" type="Sprite2D" parent="." unique_id=1471769710]
+texture = ExtResource("4_avvie")
+region_enabled = true
+region_rect = Rect2(16, 17, 38, 47)
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1410412259]
+modulate = Color(1, 1, 1, 0.5529412)
+z_index = -1
+position = Vector2(0, 8)
+scale = Vector2(0.7199998, 1)
+texture = ExtResource("5_ok5xi")
+region_rect = Rect2(0, 54, 10, 5)

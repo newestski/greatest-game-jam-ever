@@ -7,8 +7,8 @@ radius = 64.0
 
 [sub_resource type="Gradient" id="Gradient_ttgrr"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.8373494, 0.9939759, 1)
-colors = PackedColorArray(0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.8373494, 0.9698795, 0.9939759, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0, 0, 0, 0.92941177, 0.12941177, 0.6313726, 0.9411765, 1, 0, 0, 1, 0.92941177, 0.12941177, 0.6313726, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p5xjl"]
 gradient = SubResource("Gradient_ttgrr")

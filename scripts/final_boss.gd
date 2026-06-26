@@ -4,6 +4,7 @@ extends Enemy
 @onready var teleport_sound: AudioStreamPlayer2D = $TeleportSound
 @onready var charge_dash_sound: AudioStreamPlayer2D = $ChargeDashSound
 @onready var dash_sound: AudioStreamPlayer2D = $DashSound
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var sight_distance: float = 200  # distance at witch enemy will start attacking you (px)
 @export var center_disc_beam_state_time: float = 6
@@ -52,6 +53,7 @@ var win_menu: WinMenu
 func on_spawn():
 	waypoint_positions = get_waypoint_positions()
 	origin_position = position
+	animated_sprite_2d.play("idle")
 	
 	game_ui = get_tree().get_first_node_in_group("game_ui")
 	music_manager = get_tree().get_first_node_in_group("music_manager")
@@ -66,6 +68,12 @@ func on_death():
 	win_menu.open(time_after_fight)
 	game_manager.clear_all_enemies()
 
+func _process(_delta: float) -> void:
+	#flipping sprite to face player
+	if animated_sprite_2d.position.x - target.position.x > 0 :
+		animated_sprite_2d.flip_h = true
+	else:
+		animated_sprite_2d.flip_h = false
 
 func on_physics_proccess(delta: float) -> void:
 	if !target: return # prevents crash if player is freed
@@ -73,22 +81,33 @@ func on_physics_proccess(delta: float) -> void:
 	time_since_last_attack_change += delta
 	time_since_last_contact_damage += delta
 	velocity *= 0.95
-	
+
 	if contact_damage_enabled and time_since_last_contact_damage > time_between_contact_damages:
 		shoot_at_position(contact_damage_path, Vector2(0,0))
 		time_since_last_contact_damage = 0
 	
 	if state == states.IDLE and check_distance_to_point(target.position) < sight_distance:
+		animated_sprite_2d.play("idle")
 		state = states.WAITING
 		time_since_last_attack_change = 0
 		music_manager.weirdly_chill_boss_theme.play()
 		game_ui.boss_bar.assign_boss_bar(self)
+		#making a barrier (god forgive me for this)
+		var tile = Vector2i(0,4)
+		game_manager.current_level.tile_map_layer.set_cell(Vector2i(-3, -25), 0, tile)
+		game_manager.current_level.tile_map_layer.set_cell(Vector2i(-2, -25), 0, tile)
+		game_manager.current_level.tile_map_layer.set_cell(Vector2i(-1, -25), 0, tile)
+		game_manager.current_level.tile_map_layer.set_cell(Vector2i(0, -25), 0, tile)
+		game_manager.current_level.tile_map_layer.set_cell(Vector2i(1, -25), 0, tile)
+
+		
 		await get_tree().create_timer(time_before_fight).timeout
 		state = pick_random_state()
 	
 	elif state == states.CENTER_DISC_BEAM_TELEPORT:
 		state = states.WAITING
 		await teleport(origin_position)
+		animated_sprite_2d.play("shoot")
 		state = states.CENTER_DISC_BEAM
 	
 	elif state == states.CENTER_DISC_BEAM:
@@ -102,6 +121,7 @@ func on_physics_proccess(delta: float) -> void:
 	elif state == states.CORNER_DISC_BEAM_TELEPORT:
 		state = states.WAITING
 		await teleport(waypoint_positions.pick_random())
+		animated_sprite_2d.play("shoot")
 		state = states.CORNER_DISC_BEAM
 	
 	elif state == states.CORNER_DISC_BEAM:
@@ -113,12 +133,14 @@ func on_physics_proccess(delta: float) -> void:
 			state = pick_random_state()
 	
 	elif state == states.DASH_CHARGE:
+		animated_sprite_2d.play("dash_charge")
 		state = states.WAITING
 		charge_dash_sound.play()
 		await get_tree().create_timer(dash_charge_time).timeout
 		state = states.DASH
 	
 	elif state == states.DASH:
+		animated_sprite_2d.play("dash")
 		contact_damage_enabled = true
 		dash_sound.play()
 		velocity = (target.position-position).normalized() * 500
@@ -133,6 +155,7 @@ func on_physics_proccess(delta: float) -> void:
 
 	
 	elif state == states.SUMMON_ENEMIES:
+		animated_sprite_2d.play("idle")
 		var enemy = await game_manager.spawn_enemy(game_manager.get_random_enemy(), waypoint_positions.pick_random())
 		var summon_particles = teleport_particles.duplicate()
 		teleport_sound.play()
@@ -147,6 +170,7 @@ func on_physics_proccess(delta: float) -> void:
 
 func teleport(target_position: Vector2):
 	#spawn particles on origin
+	animated_sprite_2d.play("teleport")
 	var origin_particles: CPUParticles2D = teleport_particles.duplicate()
 	add_child(origin_particles)
 	teleport_sound.play()

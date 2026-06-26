@@ -3,16 +3,87 @@
 [ext_resource type="Script" uid="uid://qtp32gpm5q60" path="res://scripts/final_boss.gd" id="1_f8x14"]
 [ext_resource type="Script" uid="uid://v46e3yo41ho1" path="res://scripts/health_component.gd" id="2_4do5p"]
 [ext_resource type="AudioStream" uid="uid://bk8lwqshshelv" path="res://assets/sounds/hurt.wav" id="3_s8evt"]
-[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="4_3uqse"]
 [ext_resource type="AudioStream" uid="uid://bgsypmskosu55" path="res://assets/sounds/warp.wav" id="5_4do5p"]
 [ext_resource type="AudioStream" uid="uid://p84sbaumwk8p" path="res://assets/sounds/prepare.wav" id="6_3uqse"]
+[ext_resource type="Texture2D" uid="uid://crxrxlioolg52" path="res://assets/images/torsion.png" id="7_3uqse"]
 [ext_resource type="AudioStream" uid="uid://jrahe5b24yr6" path="res://assets/sounds/swoosh.wav" id="7_bhnfq"]
+[ext_resource type="Texture2D" uid="uid://bm74n54ibdynl" path="res://assets/images/shadow.png" id="8_bhnfq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8tegq"]
 radius = 13.038404
 
 [sub_resource type="Gradient" id="Gradient_f8x14"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uqse"]
+atlas = ExtResource("7_3uqse")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unvtr"]
+atlas = ExtResource("7_3uqse")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhnfq"]
+atlas = ExtResource("7_3uqse")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hoomr"]
+atlas = ExtResource("7_3uqse")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40l6p"]
+atlas = ExtResource("7_3uqse")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5gwa"]
+atlas = ExtResource("7_3uqse")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hoomr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uqse")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unvtr")
+}],
+"loop": true,
+"name": &"dash_charge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhnfq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hoomr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40l6p")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5gwa")
+}],
+"loop": true,
+"name": &"teleport",
+"speed": 5.0
+}]
 
 [node name="FinalBoss" type="CharacterBody2D" unique_id=243505862 groups=["enemy"]]
 collision_layer = 4
@@ -31,10 +102,6 @@ metadata/_custom_type_script = "uid://v46e3yo41ho1"
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1593866449]
 path_postprocessing = 1
 radius = 32.0
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987956348]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_3uqse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=589761609]
 shape = SubResource("CircleShape2D_8tegq")
@@ -69,3 +136,15 @@ bus = &"Sounds"
 stream = ExtResource("7_bhnfq")
 volume_db = 2.0
 bus = &"Sounds"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=388897067]
+sprite_frames = SubResource("SpriteFrames_hoomr")
+animation = &"dash_charge"
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1375672600]
+modulate = Color(1, 1, 1, 0.5529412)
+z_index = -1
+position = Vector2(0, 17)
+scale = Vector2(0.7199998, 1)
+texture = ExtResource("8_bhnfq")
+region_rect = Rect2(0, 54, 10, 5)

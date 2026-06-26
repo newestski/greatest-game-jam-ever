@@ -1,5 +1,7 @@
 extends Enemy
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 @export var sight_distance: float = 200 # distance at witch enemy will start tracking you (px)
 @export var approach_distance: float = 150 # distance enemy move toward you if you get to far (px)
 @export var retreat_distance: float = 100 # distance enemy tries to run if you get to close (px)
@@ -18,9 +20,12 @@ func on_physics_proccess(delta: float) -> void:
 	time_since_last_attack += delta
 	
 	if state == states.IDLE:
+		animated_sprite_2d.play("idle")
 		if check_line_of_sight(target.global_position) and check_distance_to_point(target.position) < sight_distance:
+			animated_sprite_2d.play("default")
 			state = states.ATTACKING
 			time_since_last_attack = 0
+			
 		
 	else:
 		if state == states.ATTACKING:
@@ -48,5 +53,7 @@ func on_physics_proccess(delta: float) -> void:
 		if check_distance_to_point(target.position) <= shoot_distance and time_since_last_attack >= attack_cooldown and check_line_of_sight(target.position):
 			shoot_at_position(disc_path, target.position)
 			time_since_last_attack = 0
-		
+			animated_sprite_2d.play("shoot")
+			await animated_sprite_2d.animation_finished
+			animated_sprite_2d.play("default")
 		move_and_slide()
