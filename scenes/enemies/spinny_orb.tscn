@@ -13,12 +13,12 @@ collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_e8daw")
 speed = 20
-reward = 5
+reward = 15
 metadata/_custom_type_script = "uid://dowrttjq23rqv"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1950605407]
 script = ExtResource("2_avvie")
-max_health = 50.0
+max_health = 30.0
 health_team = "enemy"
 hurt_sound = ExtResource("3_avvie")
 metadata/_custom_type_script = "uid://v46e3yo41ho1"

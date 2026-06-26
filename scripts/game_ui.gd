@@ -13,6 +13,7 @@ extends Control
 @onready var win_menu: WinMenu = $WinMenu
 
 
+
 func _process(_delta: float) -> void:
 	if player:
 		floor_counter.text = "Floor " + str(game_manager.current_floor)

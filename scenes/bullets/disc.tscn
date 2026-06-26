@@ -1,10 +1,40 @@
 [gd_scene format=3 uid="uid://dhoph5scvavw0"]
 
 [ext_resource type="Script" uid="uid://povwjv23tsdd" path="res://scripts/disc.gd" id="1_n26ba"]
-[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="2_ninf4"]
+[ext_resource type="Texture2D" uid="uid://ct8oepu4v2ii0" path="res://assets/disc_sprite_sheet.png" id="2_n26ba"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v8qja"]
-radius = 5.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ninf4"]
+radius = 2.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tnxa"]
+atlas = ExtResource("2_n26ba")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cef7g"]
+atlas = ExtResource("2_n26ba")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1ytc"]
+atlas = ExtResource("2_n26ba")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ta3rp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tnxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cef7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1ytc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="Disc" type="Node2D" unique_id=1612938679]
 script = ExtResource("1_n26ba")
@@ -15,8 +45,10 @@ collision_layer = 8
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=670067129]
-shape = SubResource("CircleShape2D_v8qja")
+shape = SubResource("CapsuleShape2D_ninf4")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=583363789]
-scale = Vector2(0.07, 0.07)
-texture = ExtResource("2_ninf4")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=36354705]
+rotation = 1.5707964
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_ta3rp")
+autoplay = "default"

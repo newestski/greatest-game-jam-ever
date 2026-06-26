@@ -10,6 +10,7 @@ script/source = "extends Node2D
 @onready var area_2d: Area2D = $Area2D
 @onready var game_manager: GameManager
 @onready var player: Player
+@onready var dialog: DialogSystem
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
@@ -32,8 +33,12 @@ func open_door():
 	audio_stream_player_2d.play()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body == player and game_manager.enemies_left == 0:
-		game_manager.go_to_next_floor()
+	if !dialog:
+		if body == player and game_manager.enemies_left == 0:
+			game_manager.go_to_next_floor()
+	else:
+		if body == player and game_manager.enemies_left == 0 and dialog.in_dialog == false:
+			game_manager.go_to_next_floor()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3un0"]

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cr56nernoyrdx"]
+
+[ext_resource type="Script" uid="uid://cr5o42k2nhsqk" path="res://scripts/liam.gd" id="1_p6aa0"]
+[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="2_asvy4"]
+[ext_resource type="Texture2D" uid="uid://7v0vs7077np0" path="res://assets/button_sprite_sheet.png" id="3_buxp3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rc4r"]
+radius = 41.01219
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nrpo"]
+atlas = ExtResource("3_buxp3")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckp8l"]
+atlas = ExtResource("3_buxp3")
+region = Rect2(9, 0, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_78yli"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nrpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckp8l")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dqpwt"]
+radius = 18.0
+
+[node name="Liam" type="Node2D" unique_id=1083752003]
+script = ExtResource("1_p6aa0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1745947914]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_asvy4")
+
+[node name="interact_zone" type="Area2D" parent="." unique_id=1237074965]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interact_zone" unique_id=1644866789]
+shape = SubResource("CircleShape2D_6rc4r")
+
+[node name="button_anim" type="AnimatedSprite2D" parent="." unique_id=1886605253]
+z_index = 1
+z_as_relative = false
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_78yli")
+animation = &"click"
+autoplay = "click"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=729710346]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1236569154]
+shape = SubResource("CircleShape2D_dqpwt")
+
+[connection signal="body_entered" from="interact_zone" to="." method="_on_interact_zone_body_entered"]
+[connection signal="body_exited" from="interact_zone" to="." method="_on_interact_zone_body_exited"]

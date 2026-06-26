@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://c8rnvqgc2qegu"]
+
+[ext_resource type="Script" uid="uid://hkohck5b3v4f" path="res://scripts/dialog_system.gd" id="1_kld2x"]
+[ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="2_oj4fm"]
+[ext_resource type="FontFile" uid="uid://bv7wxymrak8mq" path="res://assets/PixelOperator8.ttf" id="3_7myk8"]
+[ext_resource type="FontFile" uid="uid://cbkdrngeg8eb5" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_y08h8"]
+[ext_resource type="PackedScene" uid="uid://cq3xqkkeb4yyq" path="res://scenes/nine_patch_button.tscn" id="5_p4bxt"]
+[ext_resource type="Script" uid="uid://be7x4orj5vcx7" path="res://scripts/dialog_choices.gd" id="5_skqg8"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_skqg8"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_o7dfd"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_2h4a4"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_3urqn"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_s6jwc"]
+
+[node name="DialogSystem" type="Control" unique_id=988399176]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -813.3333
+offset_bottom = -443.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+script = ExtResource("1_kld2x")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=771731492]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 140.0
+offset_right = 332.0
+offset_bottom = 214.0
+texture = ExtResource("2_oj4fm")
+region_rect = Rect2(77, 0, 9, 9)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Name" type="Label" parent="NinePatchRect" unique_id=1756294377]
+layout_mode = 0
+offset_left = 4.000038
+offset_top = 4.000122
+offset_right = 265.99997
+offset_bottom = 12.000122
+theme_override_fonts/font = ExtResource("3_y08h8")
+theme_override_font_sizes/font_size = 8
+text = "Name"
+
+[node name="Text" type="Label" parent="NinePatchRect" unique_id=1482164507]
+layout_mode = 0
+offset_left = 4.000038
+offset_top = 12.66684
+offset_right = 265.99997
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("3_7myk8")
+theme_override_font_sizes/font_size = 8
+text = "text text text text text text text text text text text text text text text text text text text text text text"
+autowrap_mode = 3
+
+[node name="choices" type="Control" parent="NinePatchRect" unique_id=1903754568]
+visible = false
+anchors_preset = 0
+offset_left = 175.0
+offset_top = -85.99999
+offset_right = 255.0
+offset_bottom = -9.999992
+script = ExtResource("5_skqg8")
+b_group = SubResource("ButtonGroup_skqg8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/choices" unique_id=399358820]
+layout_direction = 3
+layout_mode = 0
+offset_left = -15.0
+offset_top = 8.333322
+offset_right = 52.333313
+offset_bottom = 84.33332
+alignment = 2
+
+[node name="choice_1" parent="NinePatchRect/choices/VBoxContainer" unique_id=503859571 instance=ExtResource("5_p4bxt")]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_o7dfd")
+text = "Choice 1"
+
+[node name="choice_2" parent="NinePatchRect/choices/VBoxContainer" unique_id=2133553674 instance=ExtResource("5_p4bxt")]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2h4a4")
+text = "Choice 2"
+
+[node name="choice_3" parent="NinePatchRect/choices/VBoxContainer" unique_id=1213457325 instance=ExtResource("5_p4bxt")]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_3urqn")
+text = "Choice 3"
+
+[node name="choice_4" parent="NinePatchRect/choices/VBoxContainer" unique_id=1906798452 instance=ExtResource("5_p4bxt")]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_s6jwc")
+text = "Choice 4"
+
+[connection signal="next_key" from="NinePatchRect/choices" to="." method="_on_choices_next_key"]

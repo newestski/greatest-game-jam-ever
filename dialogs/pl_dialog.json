@@ -1,0 +1,108 @@
+{
+	"introduction": {
+		"name": "Liam",
+		"text": "Hello adventurer!",
+		"next": "question_1"
+	},
+	"question_1": {
+		"name": "Liam",
+		"text": "Why are you spinning?",
+		"next": "answear_1"
+	},
+	"answear_1": {
+		"name": "???",
+		"text": "First of all, I’m not an adventurer, and secondly, a wizard cast a curse on me that makes me spin constantly.",
+		"next": "reaction_1"
+	},
+	"question_2": {
+		"name": "Liam",
+		"text": "Oh okay i understand... Then who are you?",
+		"choice": {
+			"peasant": "choice_1",
+			"UUWS3000": "choice_2",
+			"serious": "choice_3",
+			"andrew": "choice_4"
+		}
+	},
+	"choice_1": {
+		"name": "???",
+		"text": "I am an ordinary resident of a nearby village.",
+		"player_name": "Peasant",
+		"next": "answear_2"
+	},
+	"choice_2": {
+		"name": "???",
+		"text": "THEY CALL ME THE ULTIMATE ULTRA WIZARD SLAYER 3000",
+		"player_name": "ULTIMATE ULTRA WIZARD SLAYER 3000",
+		"next": "answear_2"
+	},
+	"choice_3": {
+		"name": "???",
+		"text": "I am a very serious person.",
+		"player_name": "very serious person",
+		"next": "answear_2"
+	},
+	"choice_4": {
+		"name": "???",
+		"text": "My name is Andrew",
+		"player_name": "Andrew",
+		"next": "answear_2"
+	},
+	"answear_2": {
+		"name": "Liam",
+		"text": "Oh okay nice to meet you ",
+		"next": "question_3"
+	},
+	"question_3": {
+		"name": "Liam",
+		"text": "So what are you doing here?",
+		"next": "answear_3"
+	},
+	"answear_3": {
+		"name": "{player_name}",
+		"text": "Im here to get rid of this stupid curse!!",
+		"next": "question_4"
+	},
+	"question_4": {
+		"name": "Liam",
+		"text": "Okay i see you have a revolver with you.. Do you know how to use it? I could help you!",
+		"choice": {
+			"yes": "choice_2_1",
+			"no": "choice_2_2"
+		}
+	},
+	"choice_2_1": {
+		"name": "{player_name}",
+		"text": "Yes i know how to use it duhh?",
+		"next": "answear_4_1"
+	},
+	"choice_2_2": {
+		"name": "{player_name}",
+		"text": "No could you help me?",
+		"next": "answear_4_2"
+	},
+	"answear_4_1": {
+		"name": "Liam",
+		"text": "Okay so you shoot with LMB and you reload with...",
+		"next": "answear_5"
+	},
+	"answear_4_2": {
+		"name": "Liam",
+		"text": "No problem my friend. You shoot using LMB and reload with R. Dash is bound to Shift. You can focus using the spacebar, and if you spin fast enough, press space to fire a special attack.",
+		"next": "answear_5_2"
+	},
+	"answear_5_1": {
+		"name": "{player_name}",
+		"text": "I SAID I KNOW HOW TO USE IT!!!!!!",
+		"next": "answear_6"
+	},
+	"answear_5_2": {
+		"name": "{player_name}",
+		"text": "Thanks! I will go now..",
+		"next": "answear_6"
+	},
+	"answear_6": {
+		"name": "Liam",
+		"text": "Okay i wish you luck!!",
+	},
+}

@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://3p3okus2e73h" path="res://scenes/settings_menu.tscn" id="14_1kaiv"]
 [ext_resource type="PackedScene" uid="uid://djlikehuyw5gi" path="res://scenes/death_menu.tscn" id="14_upmhx"]
 [ext_resource type="PackedScene" uid="uid://duaxgw52l4xf4" path="res://scenes/win_menu.tscn" id="17_igvt4"]
+[ext_resource type="PackedScene" uid="uid://c8rnvqgc2qegu" path="res://scenes/dialog_system.tscn" id="19_2rmtt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt76a"]
 atlas = ExtResource("1_yubou")
@@ -543,3 +544,9 @@ layout_mode = 1
 
 [node name="WinMenu" parent="." unique_id=618751306 instance=ExtResource("17_igvt4")]
 layout_mode = 1
+
+[node name="DialogSystem" parent="." unique_id=988399176 instance=ExtResource("19_2rmtt")]
+visible = false
+layout_mode = 1
+offset_right = -768.0
+offset_bottom = -432.0

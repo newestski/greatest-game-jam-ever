@@ -106,7 +106,6 @@ func buy(): #deletes the money and apllies the buff
 func _on_buy_zone_body_entered(body):
 	print(body)
 	if body.is_in_group("player"):
-		print("gracz w strefie")
 		press.visible = true
 		desc_tab.visible = true
 		in_zone = true
