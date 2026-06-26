@@ -56,13 +56,14 @@ func load_block(block: Dictionary) -> void:
 		in_dialog = false
 		pause.pausable = true
 		player.talking = false
+		visible = false
 		print("koniec dialogu")
-		queue_free()
+
 
 func next() -> void:
 	current_block = next_block
+	print(next_block)
 	load_block(current_block)
-
 
 
 func _on_choices_next_key(key2) -> void:
@@ -70,8 +71,8 @@ func _on_choices_next_key(key2) -> void:
 	next()
 	if !Global.player_name:
 		Global.player_name = current_block["Player_name"]
-		visible = false
 	choices.visible = false
+
 
 func format_text(text: String) -> String:
 	return text.format({"player_name": Global.player_name})

@@ -20,7 +20,6 @@ func _on_interact_zone_body_entered(body):
 		button_anim.visible = true
 		in_zone = true
 
-
 func _on_interact_zone_body_exited(body):
 	if body.is_in_group("player"):
 		button_anim.visible = false
