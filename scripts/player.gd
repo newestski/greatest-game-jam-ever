@@ -16,13 +16,14 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 @onready var crosshair = $gun_position/crosshair
 @onready var anim_player = $AnimationPlayer
 @onready var special_sound: AudioStreamPlayer2D = $SpecialSound
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var reload_speed: float = 0.7 #time to load every bullet
 @export var firerate: float = 0.4 #time between shots
 @export var damage: int = 30 #revolver damage
 @export var walk_speed: float = 100.0 # walk speed (px/s)
 @export var spin_acceleration: float = 200 # rate at witch spin speed increases over time (deg/s^2)
-@export var focus_spin_speed: float = 90 # spin speed while focus key is held (deg/s)
+@export var focus_spin_speed: float = 70 # spin speed while focus key is held (deg/s)
 @export var step_interval: float = 0.12 #time between step sfx
 @export var fast_spin_speed: float = 360 # starting spin speed when focus key is unpressed (deg/s)
 @export var special_attack_speed_threshold: float = 1500 # minimum speed required to use special attack (deg/s)
@@ -31,6 +32,7 @@ var tracer = preload("res://scenes/bullets/tracer.tscn").instantiate()
 @export var dash_recharge_time: float = 2 # time it takes to regain 1 dash (sec)
 @export var dash_strength: float = 350
 @export var walk_acceleration: float = 1000
+@export var flash_interval: float = 0.1
 
 @export_file("*.tscn") var bullet_path: String # file path to the bullet that will be spawned by shooting
 @export_file("*.tscn") var shockwave_path: String # file path to the bullet that will be spawned by using special
@@ -40,7 +42,7 @@ const MAX_AMMO = 6 #the max ammunition for revolver
 var game_manager: GameManager
 var game_ui: MainGameUI
 
-var spin_speed: float = fast_spin_speed # keeps track of current spin speed
+var spin_speed: float = 0 # keeps track of current spin speed
 var damage_team: String
 var reloading: bool = false # checks if you are reloding rn
 var firerate_cooldown: bool = false #stops you from spamming
@@ -82,12 +84,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		if ammunition > 0 and reloading == false and firerate_cooldown == false:
 			shooting()
-
+	
 	# reloading
 	if Input.is_action_just_pressed("reload"):
 		if ammunition < MAX_AMMO and reloading == false: #chceks if your ammunition is less than full and if you arent arleady reloading
 			reload((MAX_AMMO - ammunition)) #says how much money we have to load in
-
+	
 	# walking
 	var input_direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down"))
 	if velocity.length() <= walk_speed:
@@ -101,14 +103,20 @@ func _physics_process(delta: float) -> void:
 		spin_speed += spin_acceleration * delta
 	rotation_degrees += spin_speed * delta
 	
+	move_and_slide()
+	
+	#set animation of sprite
+	animated_sprite_2d.global_rotation = 0
+	animated_sprite_2d.frame = floori(((rotation+PI)/(2*PI))*8)
 	
 	#change color if special speed threshold is met
 	if spin_speed > special_attack_speed_threshold:
-		modulate = Color.from_rgba8(255,0,0,255)
+		animated_sprite_2d.animation = "flashy_spin"
+		if fmod(time_since_last_step, flash_interval) > flash_interval/2:
+			animated_sprite_2d.frame += 8
 	else:
-		modulate = Color.from_rgba8(255,255,255,255)
-	
-	move_and_slide()
+		animated_sprite_2d.animation = "normal_spin"
+
 
 
 #called by the player's health component on death

@@ -188,6 +188,8 @@ texture = ExtResource("1_rscv7")
 7:2/0 = 0
 8:0/0 = 0
 8:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4ch23")
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4ch23"]
 scenes/1/scene = ExtResource("3_4s0vi")

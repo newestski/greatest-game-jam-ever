@@ -2,10 +2,37 @@
 
 [ext_resource type="Script" uid="uid://c7uiso2qyx8wd" path="res://scripts/spinning_rammer.gd" id="1_4e36c"]
 [ext_resource type="Script" uid="uid://v46e3yo41ho1" path="res://scripts/health_component.gd" id="2_wricq"]
-[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="3_fgya0"]
 [ext_resource type="AudioStream" uid="uid://bk8lwqshshelv" path="res://assets/sounds/hurt.wav" id="3_wricq"]
+[ext_resource type="Texture2D" uid="uid://c4iqprjyseaba" path="res://assets/images/spinning_rammer.png" id="5_fgya0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8tegq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gaa0i"]
+atlas = ExtResource("5_fgya0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83ncx"]
+atlas = ExtResource("5_fgya0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5pyme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gaa0i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83ncx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="SpinningRammer" type="CharacterBody2D" unique_id=243505862 groups=["enemy"]]
 collision_layer = 4
@@ -25,10 +52,10 @@ metadata/_custom_type_script = "uid://v46e3yo41ho1"
 path_postprocessing = 1
 radius = 32.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987956348]
-modulate = Color(0.48235294, 0.47843137, 1, 1)
-scale = Vector2(0.17, 0.17)
-texture = ExtResource("3_fgya0")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=589761609]
 shape = SubResource("CircleShape2D_8tegq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=632403149]
+sprite_frames = SubResource("SpriteFrames_5pyme")
+animation = &"idle"
+offset = Vector2(0.5, 2.5)

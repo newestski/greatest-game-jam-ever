@@ -3,10 +3,50 @@
 [ext_resource type="Script" uid="uid://ddakdancx4ba3" path="res://scripts/disc_thrower.gd" id="1_if88h"]
 [ext_resource type="Script" uid="uid://v46e3yo41ho1" path="res://scripts/health_component.gd" id="2_1gaxc"]
 [ext_resource type="AudioStream" uid="uid://bk8lwqshshelv" path="res://assets/sounds/hurt.wav" id="3_1gaxc"]
-[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="3_x6w8q"]
+[ext_resource type="Texture2D" uid="uid://cri3dn1hpb75x" path="res://assets/images/disc_thrower.png" id="4_1gaxc"]
+[ext_resource type="Texture2D" uid="uid://bm74n54ibdynl" path="res://assets/images/shadow.png" id="5_x6w8q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8tegq"]
 radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6w8q"]
+atlas = ExtResource("4_1gaxc")
+region = Rect2(0, 0, 13, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r35im"]
+atlas = ExtResource("4_1gaxc")
+region = Rect2(26, 0, 13, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo4pl"]
+atlas = ExtResource("4_1gaxc")
+region = Rect2(13, 0, 13, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r35im"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6w8q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r35im")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo4pl")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 5.0
+}]
 
 [node name="DiscThrower" type="CharacterBody2D" unique_id=243505862 groups=["enemy"]]
 collision_layer = 4
@@ -27,10 +67,17 @@ metadata/_custom_type_script = "uid://v46e3yo41ho1"
 path_postprocessing = 1
 radius = 32.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987956348]
-modulate = Color(0, 1, 1, 1)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_x6w8q")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=589761609]
 shape = SubResource("CircleShape2D_8tegq")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=754405984]
+modulate = Color(1, 1, 1, 0.5529412)
+z_index = -1
+position = Vector2(-2.3841858e-07, 13)
+scale = Vector2(0.5451851, 1)
+texture = ExtResource("5_x6w8q")
+region_rect = Rect2(0, 54, 10, 5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=641245386]
+sprite_frames = SubResource("SpriteFrames_r35im")
+animation = &"shoot"
