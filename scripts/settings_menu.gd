@@ -6,6 +6,7 @@ extends Control
 @onready var back_button: NinePatchButton = $NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/BackButton
 @onready var sounds_slider: HSlider = $NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2/SoundsSlider
 @onready var music_slider: HSlider = $NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer3/MusicSlider
+@onready var full_screen_toggle: CheckButton = $NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer4/FullScreenToggle
 
 var master_bus_index
 var music_bus_index
@@ -18,6 +19,8 @@ func _ready():
 	
 	sounds_slider.value = AudioServer.get_bus_volume_linear(sfx_bus_index)
 	music_slider.value = AudioServer.get_bus_volume_linear(music_bus_index)
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		full_screen_toggle.button_pressed = true
 
 
 func open():
@@ -40,3 +43,10 @@ func _on_music_slider_value_changed(value: float) -> void:
 
 func _on_back_button_pressed() -> void:
 	close()
+
+
+func _on_full_screen_toggle_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

@@ -13,7 +13,10 @@ config_version=5
 config/name="Spin To Win"
 run/main_scene="uid://kmb12f0e2qpx"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0.003921569, 0.1764706, 1)
+boot_splash/show_image=false
+boot_splash/use_filter=false
+config/icon="uid://cmw2giwgrdcr7"
 
 [audio]
 
@@ -25,7 +28,6 @@ Global="*uid://dslass0a5glg7"
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
