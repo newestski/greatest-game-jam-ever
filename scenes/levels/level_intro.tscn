@@ -18,5 +18,5 @@ tile_map_data = PackedByteArray("AADz//P/AAAEAAIAAADz//T/AAAEAAIAAADz//X/AAAEAAI
 tile_map_data = PackedByteArray("AAD///v/AAAGAAIAAAD///z/AAAGAAMAAAAAAPv/AAAHAAIAAAAAAPz/AAAHAAMAAAD///3/AAAGAAQAAAAAAP3/AAAHAAQAAAD///X/AAAGAAMAAAD///b/AAAGAAQAAAAAAPX/AAAHAAMAAAAAAPb/AAAHAAQAAAD///T/AAAGAAIAAAAAAPT/AAAHAAIAAAA=")
 
 [node name="Liam" parent="." index="4" unique_id=1083752003 instance=ExtResource("2_1lxv7")]
-position = Vector2(0, -21)
-scale = Vector2(0.6, 0.6)
+process_priority = 1
+position = Vector2(0, -30)

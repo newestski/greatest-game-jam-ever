@@ -4,109 +4,103 @@
 	},
 	"introduction": {
 		"name": "Liam",
-		"text": "Hello adventurer!",
+		"text": "hello! welcome to Torsion's Spinning Tower of Terror. how may i help you?",
+		"next": "talk_1"
+	},
+	"talk_1": {
+		"name": "Axel",
+		"text": "I'm here because your boss cursed me to spin forever and now I WANT HIS HEAD ON A PIKE.",
+		"next": "talk_2"
+	},
+	"talk_2": {
+		"name": "Liam",
+		"text": "oh so THAT's why you're like that... sorry man he's just kinda crazy lol.",
 		"next": "question_1"
 	},
 	"question_1": {
 		"name": "Liam",
-		"text": "Why are you spinning?",
-		"next": "answear_1"
+		"text": "So. Uh. did you make an appointment?",
+		"choice": {
+			"no": "choice_1_1_1",
+			"yes": "choice_1_2_1",
+		}
 	},
-	"answear_1": {
-		"name": "???",
-		"text": "First of all, I’m not an adventurer, and secondly, a wizard has cast a curse on me that makes me spin constantly.",
+	"choice_1_1_1": {
+		"name": "Axel",
+		"text": "No???????",
+		"next": "choice_1_1_2"
+	},
+	"choice_1_1_2": {
+		"name": "Liam",
+		"text": "okay so he's kinda busy rn so you're kind of out of luck. unless you wanted to fight your way up to floor 11 through his hoard of minions i guess.",
+		"next": "choice_1_1_3"
+	},
+	"choice_1_1_3": {
+		"name": "Axel",
+		"text": "well I GUESS THAT'S WHAT I'LL DO!",
+		"next": "question_2"
+	},
+	"choice_1_2_1": {
+		"name": "Axel",
+		"text": "uhm... yes?",
+		"next": "choice_1_2_2"
+	},
+	"choice_1_2_2": {
+		"name": "Liam",
+		"text": "okay then! all guests must fight there way up to floor 11 through his hoard of minions if they want the right to speak with him.",
+		"next": "choice_1_2_3"
+	},
+	"choice_1_2_3": {
+		"name": "Axel",
+		"text": "well it was worth a shot i guess.",
 		"next": "question_2"
 	},
 	"question_2": {
 		"name": "Liam",
-		"text": "Oh okay i understand... Then who are you?",
+		"text": "cool! so do you need any help with that?",
 		"choice": {
-			"Peasant": "choice_1",
-			"UUWS3000": "choice_2",
-			"Serious person": "choice_3",
-			"Andrew": "choice_4"
+			"Yes": "choice_2_1_1",
+			"No": "choice_2_2_1"
 		}
 	},
-	"choice_1": {
-		"name": "???",
-		"text": "I am an ordinary resident of a nearby village.",
-		"Player_name": "Peasant",
-		"next": "answear_2"
+	"choice_2_1_1": {
+		"name": "Axel",
+		"text": "...really? uhm yeah!",
+		"next": "choice_2_1_2"
 	},
-	"choice_2": {
-		"name": "???",
-		"text": "THEY CALL ME THE ULTIMATE ULTRA WIZARD SLAYER 3000",
-		"Player_name": "ULTIMATE ULTRA WIZARD SLAYER 3000",
-		"next": "answear_2"
-	},
-	"choice_3": {
-		"name": "???",
-		"text": "I am a very serious person.",
-		"Player_name": "very serious person",
-		"next": "answear_2"
-	},
-	"choice_4": {
-		"name": "???",
-		"text": "My name is Andrew",
-		"Player_name": "Andrew",
-		"next": "answear_2"
-	},
-	"answear_2": {
+	"choice_2_1_2": {
 		"name": "Liam",
-		"text": "Oh okay nice to meet you ",
-		"next": "question_3"
+		"text": "Of course! Why not? He pays me less than minimum wage.",
+		"next": "choice_2_1_3"
 	},
-	"question_3": {
+	"choice_2_1_3": {
 		"name": "Liam",
-		"text": "So what are you doing here?",
-		"next": "answear_3"
+		"text": "You shoot using LMB and reload with R. Slow your spin at any time by holding the spacebar, but if you spin fast enough before doing it you'll fire a special attack! Oh, and you can dash with shift.",
+		"next": "answear_2_1_4"
 	},
-	"answear_3": {
-		"name": "{player_name}",
-		"text": "Im here to get rid of this stupid curse!!",
-		"next": "question_4"
-	},
-	"question_4": {
-		"name": "Liam",
-		"text": "Okay i see you have a revolver with you.. Do you know how to use it? I could help you!",
-		"choice": {
-			"Yes": "choice_2_1",
-			"No": "choice_2_2"
-		}
-	},
-	"choice_2_1": {
-		"name": "{player_name}",
-		"text": "Yes i know how to use it duhh?",
-		"next": "answear_4_1"
-	},
-	"choice_2_2": {
-		"name": "{player_name}",
-		"text": "No could you help me?",
-		"next": "answear_4_2"
-	},
-	"answear_4_1": {
-		"name": "Liam",
-		"text": "Okay so you shoot with LMB and you reload with...",
-		"next": "answear_5_1"
-	},
-	"answear_4_2": {
-		"name": "Liam",
-		"text": "No problem my friend. You shoot using LMB and reload with R. Dash is bound to Shift. You can focus using the spacebar, and if you spin fast enough, press space to fire a special attack.",
-		"next": "answear_5_2"
-	},
-	"answear_5_1": {
-		"name": "{player_name}",
-		"text": "I SAID I KNOW HOW TO USE IT!!!!!!",
-		"next": "answear_6"
-	},
-	"answear_5_2": {
-		"name": "{player_name}",
-		"text": "Thanks! I will go now..",
-		"next": "answear_6"
-	},
-	"answear_6": {
-		"name": "Liam",
-		"text": "Okay i wish you luck!!",
+	"answear_2_1_4": {
+		"name": "Axel",
+		"text": "Thanks! See you around!",
 		"END": ""
 	},
+	"choice_2_2_1": {
+		"name": "Axel",
+		"text": "NO! I would never take advice from my enemy",
+		"next": "choice_2_2_2"
+	},
+	"choice_2_2_2": {
+		"name": "Liam",
+		"text": "Okay so you shoot with LMB and you reload with...",
+		"next": "choice_2_2_3"
+	},
+	"choice_2_2_3": {
+		"name": "Axel",
+		"text": "I SAID NO!!!!!!",
+		"next": "choice_2_2_4"
+	},
+	"choice_2_2_4": {
+		"name": "Liam",
+		"text": "oh... well wish you luck!",
+		"END": ""
+	}
 }

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cs856bxo0btja"
+path="res://.godot/imported/Stupid Tower.mp3-c953543b258b74da8c5bf14fbe89b803.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Stupid Tower.mp3"
+dest_files=["res://.godot/imported/Stupid Tower.mp3-c953543b258b74da8c5bf14fbe89b803.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

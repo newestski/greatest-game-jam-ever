@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://boe581r3gje1s"]
 
 [ext_resource type="Script" uid="uid://ckphxj8nsctpy" path="res://scripts/shop.gd" id="1_xfvoa"]
-[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="2_1l46r"]
 [ext_resource type="PackedScene" uid="uid://d16w71bjfugd4" path="res://scenes/shop_slot.tscn" id="2_032fp"]
+[ext_resource type="Texture2D" uid="uid://vq3gedju4v15" path="res://assets/images/liam.png" id="3_1l46r"]
 
 [node name="shop" type="Control" unique_id=830653036 node_paths=PackedStringArray("slots_container")]
 layout_mode = 3
@@ -25,7 +25,6 @@ offset_right = 85.0
 offset_bottom = 35.0
 theme_override_constants/separation = 24
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=601323021]
-position = Vector2(37, 8)
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("2_1l46r")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1099152229]
+position = Vector2(38, -8)
+texture = ExtResource("3_1l46r")

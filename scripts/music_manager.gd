@@ -18,7 +18,8 @@ var adaptive_song_tracks_enabled: Array[bool] # keeps track of witch audio strea
 var adaptive_song_tracks_default_volumes: Array[float] #keeps track of the starting bolume of audio streams in adaptive song
 
 func _ready() -> void:
-	start_adaptive_song([music_revolution_base, music_revolution_panic], [true, false])
+	start_adaptive_song([music_revolution_base, music_revolution_panic], [false, false])
+	adjust_adaptive_song([true,false], 1)
 	game_manager.floor_cleared.connect(floor_cleared)
 	game_manager.new_floor.connect(new_floor)
 	player.health_component.death.connect(set_song_to_base_varient)

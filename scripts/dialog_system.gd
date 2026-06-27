@@ -69,8 +69,6 @@ func next() -> void:
 func _on_choices_next_key(key2) -> void:
 	next_block = scene_script[key2]
 	next()
-	if !Global.player_name:
-		Global.player_name = current_block["Player_name"]
 	choices.visible = false
 
 

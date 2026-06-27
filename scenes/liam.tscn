@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cr56nernoyrdx"]
 
-[ext_resource type="Script" uid="uid://cr5o42k2nhsqk" path="res://scripts/liam.gd" id="1_p6aa0"]
-[ext_resource type="Texture2D" uid="uid://ctdftor1fu1iu" path="res://icon.svg" id="2_asvy4"]
+[ext_resource type="Script" path="res://scripts/liam.gd" id="1_p6aa0"]
 [ext_resource type="Texture2D" uid="uid://7v0vs7077np0" path="res://assets/button_sprite_sheet.png" id="3_buxp3"]
+[ext_resource type="Texture2D" uid="uid://vq3gedju4v15" path="res://assets/images/liam.png" id="3_p6aa0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6rc4r"]
 radius = 41.01219
@@ -35,10 +35,6 @@ radius = 18.0
 [node name="Liam" type="Node2D" unique_id=1083752003]
 script = ExtResource("1_p6aa0")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1745947914]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_asvy4")
-
 [node name="interact_zone" type="Area2D" parent="." unique_id=1237074965]
 collision_layer = 2
 collision_mask = 2
@@ -58,6 +54,9 @@ autoplay = "click"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1236569154]
 shape = SubResource("CircleShape2D_dqpwt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=872840221]
+texture = ExtResource("3_p6aa0")
 
 [connection signal="body_entered" from="interact_zone" to="." method="_on_interact_zone_body_entered"]
 [connection signal="body_exited" from="interact_zone" to="." method="_on_interact_zone_body_exited"]
