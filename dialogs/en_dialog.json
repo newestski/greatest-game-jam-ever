@@ -75,7 +75,7 @@
 	},
 	"choice_2_1_3": {
 		"name": "Liam",
-		"text": "You shoot using LMB and reload with R. Slow your spin at any time by holding the spacebar, but if you spin fast enough before doing it you'll fire a special attack! Oh, and you can dash with shift.",
+		"text": "You shoot using LMB or Control and reload with R. Slow your spin at any time by holding the spacebar, but if you spin fast enough before doing it you'll fire a special attack! Oh, and you can dash with shift.",
 		"next": "answear_2_1_4"
 	},
 	"answear_2_1_4": {

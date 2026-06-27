@@ -14,7 +14,7 @@
 	},
 	"talk_2": {
 		"name": "Liam",
-		"text": "Aha to dlatego tak sie krecisz... sory ziutek ale on jest taki troche chory psychicznie wiesz?",
+		"text": "Aha to dlatego tak sie krecisz... sory ziutek ale on jest taki troche dziwny wiesz?",
 		"next": "question_1"
 	},
 	"question_1": {
@@ -75,7 +75,7 @@
 	},
 	"choice_2_1_3": {
 		"name": "Liam",
-		"text": "Strzelasz przy uzyciu lewego i przeladowywujesz pod R. Skup sie na celowaniu pod spacja jesli szybko sie krecisz kliknij spacje! A i mozesz dashowac pod shiftem.",
+		"text": "Strzelasz przy uzyciu LMB lub Control i przeladowywujesz pod R. Skup sie na celowaniu pod spacja jesli szybko sie krecisz kliknij spacje dla specjlanego ataku! A i mozesz dashowac pod shiftem.",
 		"next": "answear_2_1_4"
 	},
 	"answear_2_1_4": {
