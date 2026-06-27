@@ -52,7 +52,7 @@ func check_distance_to_point(target_position: Vector2):
 #spawns the bullet of the spesified path point toward the spesified position
 func shoot_at_position(bullet_path: String, target_position: Vector2):
 	#instance bullet
-	var packed_bullet: PackedScene = load(bullet_path)
+	var packed_bullet: PackedScene = load(bullet_path.trim_suffix(".remap"))
 	var instanced_bullet: Bullet = packed_bullet.instantiate()
 	if get_tree().root.has_node("/root/Root"):
 		get_tree().root.get_node("/root/Root").add_child.call_deferred(instanced_bullet)

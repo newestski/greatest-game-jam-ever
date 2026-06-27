@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Spin To Win"
+config/name="Negative Inertia"
 run/main_scene="uid://kmb12f0e2qpx"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0.003921569, 0.1764706, 1)
@@ -29,7 +29,6 @@ Global="*uid://dslass0a5glg7"
 [display]
 
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [file_customization]
 

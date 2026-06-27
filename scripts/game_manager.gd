@@ -110,7 +110,7 @@ func generate_level(level_path: String):
 	await wait_for_file(level_path)
 	
 	#instance level layout
-	var packed_level: PackedScene = load(level_path)
+	var packed_level: PackedScene = load(level_path.trim_suffix(".remap"))
 	var instanced_level: Node2D = packed_level.instantiate()
 	if get_tree().root.has_node("/root/Root"):
 		get_tree().root.get_node("/root/Root").add_child.call_deferred(instanced_level)
