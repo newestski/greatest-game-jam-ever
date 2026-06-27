@@ -2,6 +2,24 @@
 
 [ext_resource type="FontFile" uid="uid://cuqey5iojt3xp" path="res://assets/fonts/PixelOperator8.ttf" id="1_gkpjq"]
 
+[sub_resource type="Gradient" id="Gradient_wwwhx"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0.09411765, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ncuph"]
+gradient = SubResource("Gradient_wwwhx")
+width = 8
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_trxvg"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.24705882, 0.28235295, 0.8, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tfce0"]
+gradient = SubResource("Gradient_trxvg")
+width = 8
+height = 8
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_gkpjq"]
 color = Color(0, 0, 0.09411765, 1)
 
@@ -75,6 +93,8 @@ corner_detail = 5
 [resource]
 default_font = ExtResource("1_gkpjq")
 Button/font_sizes/font_size = 8
+CheckButton/icons/checked = SubResource("GradientTexture2D_ncuph")
+CheckButton/icons/unchecked = SubResource("GradientTexture2D_tfce0")
 HSeparator/styles/separator = SubResource("StyleBoxLine_gkpjq")
 HSlider/icons/grabber = SubResource("GradientTexture2D_ym1nf")
 HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_wwwhx")
