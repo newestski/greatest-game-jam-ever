@@ -21,8 +21,8 @@
 		"name": "Liam",
 		"text": "So. Uh. did you make an appointment?",
 		"choice": {
-			"no": "choice_1_1_1",
-			"yes": "choice_1_2_1",
+			"Yes": "choice_1_2_1",
+			"No": "choice_1_1_1",
 		}
 	},
 	"choice_1_1_1": {
@@ -81,7 +81,7 @@
 	"answear_2_1_4": {
 		"name": "Axel",
 		"text": "Thanks! See you around!",
-		"END": ""
+		"next": "end"
 	},
 	"choice_2_2_1": {
 		"name": "Axel",
@@ -101,6 +101,9 @@
 	"choice_2_2_4": {
 		"name": "Liam",
 		"text": "oh... well wish you luck!",
+		"next": "end"
+	},
+	"end": {
 		"END": ""
 	}
 }

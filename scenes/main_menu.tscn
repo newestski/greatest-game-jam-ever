@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c327jq863jyks" path="res://assets/images/main_menu_art.png" id="7_oa1go"]
 [ext_resource type="Texture2D" uid="uid://b2j3fr1pjvk0i" path="res://assets/images/player.png" id="8_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://bm74n54ibdynl" path="res://assets/images/shadow.png" id="9_5dd4i"]
+[ext_resource type="PackedScene" uid="uid://d2e7dbi1vw56g" path="res://scenes/language.tscn" id="10_5dd4i"]
 
 [sub_resource type="Animation" id="Animation_rtw2f"]
 length = 0.001
@@ -296,6 +297,14 @@ text = "Settings"
 [node name="QuitButton" parent="Options/VBoxContainer" unique_id=1960122967 instance=ExtResource("2_bqqt6")]
 layout_mode = 2
 text = "Quit"
+
+[node name="language" parent="Options" unique_id=1667763621 instance=ExtResource("10_5dd4i")]
+layout_mode = 1
+offset_left = -142.0
+offset_top = 86.66667
+offset_right = -142.0
+offset_bottom = 86.66667
+scale = Vector2(0.4, 0.4)
 
 [node name="SettingsMenu" parent="." unique_id=1257633496 instance=ExtResource("3_bqqt6")]
 z_index = 2

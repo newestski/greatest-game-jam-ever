@@ -94,11 +94,11 @@ func buy(): #deletes the money and apllies the buff
 			player.walk_speed += Global.upgrades["speed upgrade"]["value"]
 		elif upgrade_on_slot == "firerate upgrade":
 			player.firerate += Global.upgrades["firerate upgrade"]["value"]
-			if player.firerate < 0.12:
+			if player.firerate < 0.14:
 				Global.upgrades.erase("firerate upgrade")
 		elif upgrade_on_slot == "reload upgrade":
 			player.reload_speed += Global.upgrades["reload upgrade"]["value"]
-			if player.reload_speed < 0.14:
+			if player.reload_speed < 0.2:
 				Global.upgrades.erase("reload upgrade")
 		add_child(empty_slot.instantiate()) #adds empty slot to hbox container
 		txt_rect.queue_free() #deletes the slot
