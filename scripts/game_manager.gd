@@ -83,7 +83,7 @@ func get_enemy_files() -> Array[String]:
 
 
 #waits until a file is ready to be opened
-func wait_for_file(file_path: String, max_wait_time: float = 5.0) -> bool:
+func wait_for_file(file_path: String, max_wait_time: float = 0.0) -> bool:
 	var time_elapsed = 0.0
 	
 	# loop until the file exists
