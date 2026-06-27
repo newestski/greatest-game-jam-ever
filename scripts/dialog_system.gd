@@ -20,7 +20,6 @@ func _ready() -> void:
 	pause = get_tree().get_first_node_in_group("pause_menu")
 	player = get_tree().get_first_node_in_group("player")
 	add_to_group("dialogSystem")
-	Global.language = "english"
 	if Global.language == "english":
 		get_dialog("res://dialogs/en_dialog.json")
 	elif Global.language == "polish":

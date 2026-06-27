@@ -4,18 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://bhwowgn77gns8" path="res://assets/images/heads_up_display.png" id="2_oj4fm"]
 [ext_resource type="FontFile" uid="uid://bv7wxymrak8mq" path="res://assets/PixelOperator8.ttf" id="3_7myk8"]
 [ext_resource type="FontFile" uid="uid://cbkdrngeg8eb5" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_y08h8"]
+[ext_resource type="FontFile" uid="uid://cuqey5iojt3xp" path="res://assets/fonts/PixelOperator8.ttf" id="4_o7dfd"]
 [ext_resource type="PackedScene" uid="uid://cq3xqkkeb4yyq" path="res://scenes/nine_patch_button.tscn" id="5_p4bxt"]
 [ext_resource type="Script" uid="uid://be7x4orj5vcx7" path="res://scripts/dialog_choices.gd" id="5_skqg8"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_skqg8"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_o7dfd"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_2h4a4"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_3urqn"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_s6jwc"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_y47vc"]
 
 [node name="DialogSystem" type="Control" unique_id=988399176]
 layout_mode = 3
@@ -52,12 +53,24 @@ theme_override_fonts/font = ExtResource("3_y08h8")
 theme_override_font_sizes/font_size = 8
 text = "Name"
 
+[node name="button_tip" type="Label" parent="NinePatchRect" unique_id=2117500160]
+layout_mode = 0
+offset_left = 208.00006
+offset_top = 67.0
+offset_right = 328.00006
+offset_bottom = 75.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("4_o7dfd")
+theme_override_font_sizes/font_size = 8
+text = "Press E to continue"
+
 [node name="Text" type="Label" parent="NinePatchRect" unique_id=1482164507]
 layout_mode = 0
 offset_left = 4.000038
 offset_top = 12.66684
-offset_right = 265.99997
-offset_bottom = 59.0
+offset_right = 296.22226
+offset_bottom = 69.33333
+scale = Vector2(0.9, 0.9)
 theme_override_fonts/font = ExtResource("3_7myk8")
 theme_override_font_sizes/font_size = 8
 text = "text text text text text text text text text text text text text text text text text text text text text text"
@@ -85,25 +98,25 @@ alignment = 2
 [node name="choice_1" parent="NinePatchRect/choices/VBoxContainer" unique_id=503859571 instance=ExtResource("5_p4bxt")]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_o7dfd")
+button_group = SubResource("ButtonGroup_2h4a4")
 text = "Choice 1"
 
 [node name="choice_2" parent="NinePatchRect/choices/VBoxContainer" unique_id=2133553674 instance=ExtResource("5_p4bxt")]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_2h4a4")
+button_group = SubResource("ButtonGroup_3urqn")
 text = "Choice 2"
 
 [node name="choice_3" parent="NinePatchRect/choices/VBoxContainer" unique_id=1213457325 instance=ExtResource("5_p4bxt")]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_3urqn")
+button_group = SubResource("ButtonGroup_s6jwc")
 text = "Choice 3"
 
 [node name="choice_4" parent="NinePatchRect/choices/VBoxContainer" unique_id=1906798452 instance=ExtResource("5_p4bxt")]
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_s6jwc")
+button_group = SubResource("ButtonGroup_y47vc")
 text = "Choice 4"
 
 [connection signal="next_key" from="NinePatchRect/choices" to="." method="_on_choices_next_key"]

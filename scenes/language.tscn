@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://d2e7dbi1vw56g"]
+
+[ext_resource type="Script" uid="uid://db4k6voaw88fn" path="res://scripts/language.gd" id="1_bttfc"]
+[ext_resource type="Texture2D" uid="uid://bgiamnbojebga" path="res://assets/images/america_flag.png" id="2_byx4f"]
+[ext_resource type="Texture2D" uid="uid://c2c580iajsybs" path="res://assets/images/polish_flag.png" id="3_w2rlm"]
+[ext_resource type="FontFile" uid="uid://cuqey5iojt3xp" path="res://assets/fonts/PixelOperator8.ttf" id="4_byx4f"]
+
+[node name="language" type="Control" unique_id=1667763621]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bttfc")
+
+[node name="american_flag" type="Sprite2D" parent="." unique_id=906018357]
+position = Vector2(18, 10)
+texture = ExtResource("2_byx4f")
+
+[node name="english" type="Button" parent="american_flag" unique_id=1428815178]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = 8.0
+metadata/_edit_use_anchors_ = true
+
+[node name="polish_flag" type="Sprite2D" parent="." unique_id=1406627166]
+position = Vector2(18, 28)
+texture = ExtResource("3_w2rlm")
+
+[node name="polish" type="Button" parent="polish_flag" unique_id=1592595825]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = 8.0
+
+[node name="Label" type="Label" parent="." unique_id=139976764]
+layout_mode = 0
+offset_left = 1.000004
+offset_top = -13.999999
+offset_right = 193.0
+offset_bottom = 21.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/font = ExtResource("4_byx4f")
+text = "Dialog
+language"
+
+[connection signal="pressed" from="american_flag/english" to="." method="_on_english_pressed"]
+[connection signal="pressed" from="polish_flag/polish" to="." method="_on_polish_pressed"]

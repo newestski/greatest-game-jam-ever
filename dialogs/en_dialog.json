@@ -21,8 +21,8 @@
 		"name": "Liam",
 		"text": "So. Uh. did you make an appointment?",
 		"choice": {
-			"no": "choice_1_1_1",
-			"yes": "choice_1_2_1",
+			"Yes": "choice_1_2_1",
+			"No": "choice_1_1_1",
 		}
 	},
 	"choice_1_1_1": {
@@ -75,13 +75,13 @@
 	},
 	"choice_2_1_3": {
 		"name": "Liam",
-		"text": "You shoot using LMB and reload with R. Slow your spin at any time by holding the spacebar, but if you spin fast enough before doing it you'll fire a special attack! Oh, and you can dash with shift.",
+		"text": "You shoot using LMB or Control and reload with R. Slow your spin at any time by holding the spacebar, but if you spin fast enough before doing it you'll fire a special attack! Oh, and you can dash with shift.",
 		"next": "answear_2_1_4"
 	},
 	"answear_2_1_4": {
 		"name": "Axel",
 		"text": "Thanks! See you around!",
-		"END": ""
+		"next": "end"
 	},
 	"choice_2_2_1": {
 		"name": "Axel",
@@ -101,6 +101,9 @@
 	"choice_2_2_4": {
 		"name": "Liam",
 		"text": "oh... well wish you luck!",
+		"next": "end"
+	},
+	"end": {
 		"END": ""
 	}
 }

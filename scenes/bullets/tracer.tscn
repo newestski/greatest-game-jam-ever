@@ -4,5 +4,5 @@
 
 [node name="Tracer" type="Line2D" unique_id=1087194602]
 width = 1.0
-default_color = Color(1, 1, 0, 1)
+default_color = Color(1, 0.9118095, 0.38200426, 1)
 script = ExtResource("1_7yo4t")
